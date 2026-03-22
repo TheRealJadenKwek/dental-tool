@@ -1,120 +1,192 @@
-# Dental Practice Tool
+# Dr. Kwek's Practice Tool
 
-A mobile-first single-user SaaS built for Dr. Kwek, a solo dentist in New Hamburg, Ontario whose practice was acquired by True North (a DSO). The tool runs entirely in the browser with no cloud backend. All data persists in browser localStorage. There is no login, no server, and no database. Dr. Kwek opens it on his phone and uses it throughout the day.
+A mobile-first web app for managing a dental practice: patient records, expense tracking, and automated follow-up reminders.
 
-The tool has three features: a patient follow-up manager for sending SMS reminders, an expense tracker for logging receipts, and a patient list. A home dashboard ties them together with quick-access buttons and a summary of recent activity.
+---
+
+## What It Is
+
+A lightweight practice management tool for Dr. Kwek at New Hamburg Dental. It handles:
+
+- **Patient records** with LocalStorage persistence — add, search, and delete patients
+- **Expense tracking** with category breakdowns and CSV export
+- **Follow-up management** — a prioritized queue of patients who need recall messages, with SMS template copying and one-click status updates
+
+The UI is mobile-first (max-width 428px centered layout) with a bottom tab navigation bar.
 
 ---
 
 ## Tech Stack
 
-- Framework: Next.js (App Router, latest)
-- Language: TypeScript
-- Styling: Tailwind CSS v4
-- Icons: lucide-react
-- Data persistence: browser localStorage (no backend, no database)
-
-## How to Run Locally
-
-npm install && npm run dev
-
-App starts at http://localhost:3000. No environment variables required.
-
-## Data Persistence
-
-All data lives in the browser via localStorage:
-- dental-expenses — array of Expense objects (id, date, category, amount, notes)
-- dental-patients — array of Patient objects (id, name, phone, email, lastVisit)
-
-The Follow-Up page uses hardcoded mock patient data (10 patients) and tracks state only in React state for the session. Status changes (marking patients as contacted) are lost on page refresh. This is a known MVP limitation.
+| Layer | Technology |
+|---|---|
+| Framework | Next.js (latest, App Router) |
+| UI | React (latest), Tailwind CSS 4 |
+| Icons | lucide-react |
+| Auth | Supabase Auth (@supabase/auth-helpers-nextjs) |
+| Payments | Stripe (stripe npm package) |
+| Data | LocalStorage for patients and expenses; Supabase planned for persistence |
+| Data | In-memory mock data for follow-up patients (MOCK array) |
 
 ---
+
 ## Pages
 
-### / (Home Dashboard)
+### `/` — Dashboard (Home)
 
-The app entry point. Shows practice name header and four quick-action tiles in a 2x2 grid:
-- Send Follow-Ups (blue primary tile) — links to /follow-up
-- Patient List — links to /patients, shows total patient count (hardcoded 847)
-- Expenses — links to /expenses
-- Quick Add — placeholder tile, not yet functional
+Landing page after opening the app. Shows four quick-action cards:
 
-Below the grid: a Recent Follow-Ups card with three hardcoded mock entries showing name, message type, time elapsed, and sent/replied status. A View all link goes to /follow-up.
+| Card | Action |
+|---|---|
+| Send Follow-Ups | Navigates to /follow-up |
+| Patient List | Navigates to /patients |
+| Expenses | Navigates to /expenses |
+| Quick Add | Opens an inline add form (UI only, non-functional) |
 
-Below that: a This Month summary with two stats (patients seen: 34, practice expenses: $1,240 — both hardcoded).
+Below the cards: a **Recent Follow-Ups** list showing three hardcoded patients with name, message type, timestamp, and sent/replied status. A View all link navigates to /follow-up.
 
-Bottom navigation bar with four tabs linking to /, /follow-up, /expenses, /patients.
+Bottom section: **This Month** summary with two tiles — patients seen in the last 30 days (mocked: 34) and current month expenses (hardcoded: $1,240).
 
-### /follow-up (Patient Follow-Up Manager)
+Bottom tab bar with four tabs: Home, Follow-Up, Expenses, Patients.
 
-The core feature. Lets Dr. Kwek identify patients needing follow-up and copy a pre-written SMS reminder to send from his personal phone.
+### `/patients` — Patient List
 
-Data: 10 hardcoded mock patients with name, phone number (519-555-01xx), last visit date, and initial status. Statuses: overdue (last visit before Jan 2026), due-soon (Jan-Feb 2026), contacted.
+Full CRUD for patients with LocalStorage persistence under the key `dental-patients`.
 
-Status summary: Three colored pills at the top showing counts for each status (overdue in red, due-soon in yellow, contacted in green).
+Each patient record stores:
+- id (Date.now() string)
+- name (required)
+- phone (optional)
+- email (optional)
+- lastVisit (ISO date string, defaults to today)
 
-Search: Real-time text filter by patient name or phone number, with a clear button.
+Features:
+- **Add Patient form** — toggled by the Add Patient button; fields for name, phone, email, last visit date; validates name is non-empty
+- **Search** — real-time filter on name, phone, and email
+- **Patient cards** — show initials avatar, name, phone, email, last visit date; delete via trash icon
+- **Toast notifications** — appear at bottom of screen for add/remove actions (2.2s auto-dismiss)
 
-Filter tabs: Segmented control for All / Overdue / Due Soon / Contacted. Combines with search.
+### `/expenses` — Expense Tracker
 
-Bulk selection: Each patient card has a checkbox. Select All toggle. When patients are selected, a Mark Contacted button batch-updates them to contacted status and shows a toast with the count.
+Tracks dental practice expenses with LocalStorage persistence under the key `dental-expenses`.
 
-Per-patient actions: Copy Reminder SMS copies a pre-filled message to clipboard using navigator.clipboard. Done button marks a single patient as contacted. Both show toast confirmations.
+Each expense record stores:
+- id (Date.now() string)
+- date (ISO date string)
+- category (supplies | lab fees | equipment | staff | utilities | other)
+- amount (number, stored as dollars)
+- notes (optional string)
 
-Pre-written SMS template: "Hi [FirstName], this is New Hamburg Dental. You are due for a checkup. Call us at 519-662-2273 to book."
+Features:
+- **Add Expense form** — toggled by the Add button; fields for date, amount (required), category dropdown, notes
+- **Category breakdown** — grid of cards showing total per category with color-coded badges
+- **Grand total** — shown in header
+- **Sort** — toggle sort by date or amount, ascending or descending
+- **CSV Export** — downloads a CSV file named `expenses-YYYY-MM-DD.csv` with Date, Category, Amount, Notes columns
+- **Delete** — per-row Remove link
+- **Toast notifications** — for add and remove actions
 
-Toast notifications: Temporary dark pill at bottom of screen (2.5 seconds) for copy success, mark actions, and errors.
+### `/follow-up` — Patient Follow-Up
 
-Limitation: Patient data is hardcoded. Status changes are React state only and reset on page refresh. No real SMS sending — clipboard copy only. Patients cannot be added, edited, or removed here.
+A prioritized recall queue for patients due or overdue for appointments.
 
-### /expenses (Expense Tracker)
+Data source: a `MOCK` array of 10 hardcoded patients (not from LocalStorage). Each patient has id, name, phone, lastVisit date, and status (overdue | due-soon | contacted).
 
-A complete expense logging tool with full localStorage persistence.
+Status badges:
+| Status | Color | Meaning |
+|---|---|---|
+| Overdue | Red | Past typical recall window |
+| Due Soon | Yellow | Approaching recall window |
+| Contacted | Green | Already reached out |
 
-Add Expense panel: Collapsible form toggled by the Add button in the header. Fields: Date (date picker, defaults to today), Amount (number, step 0.01), Category (dropdown), Notes (optional). Validates date and amount before saving. Shows toast on success.
+Features:
+- **Filter pills** — show counts for overdue, due-soon, and contacted patients
+- **Search** — real-time filter on name and phone
+- **Tab filter bar** — All / Overdue / Due Soon / Contacted
+- **Select all / bulk select** — checkbox per patient; Select All toggles full selection
+- **Mark Contacted** — bulk action button marks all selected patients as contacted
+- **Per-patient Copy Reminder SMS** — copies a pre-written SMS template to the clipboard
+- **Per-patient Done button** — marks a single patient as contacted
+- **Toast notifications** — for SMS copy and status update actions
 
-Categories: supplies, lab fees, equipment, staff, utilities, other. Each has a distinct color chip (blue, purple, orange, pink, teal, slate).
-
-Category summary: When expenses exist, a 2-column grid shows total spending per category.
-
-Expense list: Sortable by date or amount (toggle asc/desc by clicking column headers). Each row shows category chip, date, optional notes (truncated), and dollar amount. Remove button deletes from localStorage with toast.
-
-CSV export: Download button in the header generates a CSV file (Date, Category, Amount, Notes) and triggers a browser download named expenses-YYYY-MM-DD.csv.
-
-Running total: Header subtitle shows current grand total.
-
-### /patients (Patient List)
-
-A localStorage-backed patient directory. Separate from the hardcoded follow-up data — this is a clean add/delete list.
-
-Add Patient panel: Collapsible form. Fields: Full Name (required), Phone (optional), Last Visit date (defaults to today), Email (optional). Appends to localStorage on submit.
-
-Search: Real-time filter by name, phone, or email with clear button.
-
-Patient cards: Each shows a blue avatar circle, name, phone, email (truncated), and last visit date. Trash icon button deletes the entry.
-
-Empty states: Separate messages for zero patients versus no search results.
+The SMS template reads:
+`Hi {firstName}, this is New Hamburg Dental. You're due for a checkup. Call us at 519-662-2273 to book.`
 
 ---
 
-## What Is Still Missing
+## LocalStorage Keys
 
-Real SMS sending — Follow-up page copies text to clipboard only. No Twilio, no SMS API, no WhatsApp Business API. Dr. Kwek manually pastes and sends from his personal phone.
+| Key | Data |
+|---|---|
+| `dental-patients` | Patient[] — array of patient records |
+| `dental-expenses` | Expense[] — array of expense records |
 
-Follow-up persistence — Status changes on /follow-up reset on page refresh. 10 patients are hardcoded mock data. No connection to the /patients localStorage data.
+Data is loaded on component mount and re-persisted on every mutation. No server sync.
 
-Receipt capture — Expense tracker has no photo or receipt attachment. Camera capture is in the SPEC but not implemented. Text fields only.
+---
 
-Authentication — No login, no password, no session. Anyone with the URL can access all data.
+## API Routes
 
-Multi-user backend — Single-device, single-user. No Supabase, no API, no cross-device sync.
+### POST /api/auth
 
-Dashboard real data — Home dashboard stats (847 patients, 34 seen this month, $1,240 expenses) and recent follow-ups list are all hardcoded mock values. They do not read from localStorage.
+Supabase Auth handler for login and registration.
 
-Quick Add tile — The fourth home screen tile exists but has no functionality.
+POST body: `{ email, password, action }`
+- `action = "login"`: calls `supabase.auth.signInWithPassword`; returns `{ user, session }`
+- `action = "register"`: calls `supabase.auth.signUp`; returns `{ user }`
 
-Follow-up history log — No record of past messages sent or campaigns run.
+DELETE: calls `supabase.auth.signOut`; returns `{ ok: true }`
 
-Import from practice software — True North DSO system not integrated. Patient data is manual entry only.
+### POST /api/stripe
 
-Scheduled reminders — No push notifications, no cron-based follow-up nudges.
+Creates a Stripe PaymentIntent for a dental service charge.
+
+POST body: `{ patientId, amount, description }`
+- `amount` is in dollars (converted to cents internally: `amount * 100`)
+- `currency`: CAD
+- `metadata` includes `patientId` and `description`
+- Returns: `{ clientSecret }` or `{ error }`
+
+Requires `STRIPE_SECRET_KEY` environment variable.
+
+---
+
+## Environment Variables
+
+| Variable | Purpose |
+|---|---|
+| `STRIPE_SECRET_KEY` | Stripe API key for payment intent creation |
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous (client-side) key |
+
+---
+
+## How to Run
+
+```bash
+cd projects/dental-tool
+npm install
+npm run dev
+# Open http://localhost:3000
+```
+
+For production:
+```bash
+npm run build
+npm start
+```
+
+---
+
+## What is Missing or Incomplete
+
+- **Supabase persistence** — patients and expenses are LocalStorage-only; a real Supabase schema and API integration is needed to sync across devices and sessions
+- **Auth flow UI** — /api/auth is wired but there is no login/signup page in the app; the dashboard is accessible without authentication
+- **Quick Add button** — the Quick Add card on the dashboard has no functional implementation
+- **Follow-up data is mock** — the MOCK array is hardcoded; needs a real Supabase query to fetch patients past their recall date
+- **SMS sending** — Copy Reminder SMS only copies to clipboard; a real integration with Twilio or a dental SMS provider is needed for actual sending
+- **Stripe checkout UI** — the API route creates a PaymentIntent but there is no payment form component to collect card details
+- **Appointment booking** — no calendar or scheduling component exists
+- **Real recall logic** — follow-up status is manually set; no automatic status transition based on last visit date
+- **Supabase database schema** — no migration files or schema documentation for the expected tables
+- **Error handling for Supabase/Stripe** — API routes return raw error messages; no structured error responses or retry logic
