@@ -78592,3 +78592,3937 @@ export default function Home() {
 Here is the complete, updated `app/page.js` file. I have finished building out the Expense Tracker logic and added the **Mass Follow-Up Sender** UI, which is the critical missing piece for Dr. Kwek to manage his patient relationships.
 
 I've used **Tailwind CSS** for a clean, mobile-first interface t
+
+## 2026-03-22
+Here is the complete, updated `app/page.js` file.
+
+I have built out the **Mass Follow-Up Sender** as the core second feature.
+
+**How this solves the specific problem:**
+1.  **Privacy & Compliance:** Since Dr. Kwek doesn't own the patient database (True North does), this tool doesn't try to scrape da
+
+## 2026-03-22
+Based on the "What We Know" summary, the next logical feature is the **Expense Tracker**. This solves the problem of Dr. Kwek losing receipts and needing a simple way to organize transactions for his accountant.
+
+Here is the updated `app/page.js` file. It acts as a dashboard allowing him to switch b
+
+## 2026-03-22
+```javascript
+import { useState, useEffect } from 'react';
+import { Camera, Save, Trash2, Download, DollarSign, Calendar } from 'lucide-react';
+
+// Dr. Kwek's Expense Tracker
+// This is a client-side only MVP that saves to the browser's LocalStorage.
+// It is designed for mobile-first usage.
+
+export
+
+## 2026-03-22
+Based on the context provided, here is the next logical feature: **The Patient Check-In Generator**.
+
+This is a mobile-first, client-side tool that allows Dr. Kwek to paste a list of phone numbers, type a personal message, and generate a list of "Action Cards." He simply clicks the card to open the 
+
+## 2026-03-22
+```tsx
+import React, { useState, useMemo } from 'react';
+import { Plus, Trash2, MessageSquare, CheckCircle, AlertCircle } from 'lucide-react';
+
+/**
+ * Dr. Kwek's Patient Check-In Generator
+ * 
+ * This is a client-side tool designed for Dr. Kwek to batch-generate
+ * "Action Cards" for his patient fol
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Context:** He works for a DSO (True North), uses personal cell phone, not tech-heavy.
+    *   **Problem:** Patient follow-ups (manual trigger, mass
+
+## 2026-03-22
+filename: dr_kwek_followup_tool/app/page.tsx
+
+```tsx
+import React, { useState } from 'react';
+import { Copy, Plus, Trash, Smartphone } from 'lucide-react';
+
+/**
+ * Dr. Kwek's Patient Check-In Generator
+ * 
+ * This is a client-side tool designed for Dr. Kwek to batch-generate
+ * "Action Cards" for hi
+
+## 2026-03-22
+dr_kwek_expense_tracker/app/page.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash, Camera, FileText, Save, Share } from 'lucide-react';
+
+/**
+ * Dr. Kwek's Expense Tracker
+ * 
+ * A simple, mobile-first tool to track practice expenses and receipts.
+ * - Stores data 
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User Role:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Context:** Practice bought by True North (DSO). Uses personal cell. Not tech-heavy. Phone-first UX.
+    *   **Features:**
+        1.  Mass Fol
+
+## 2026-03-22
+```javascript
+// filename: expense-tracker.js
+// Description: Mobile-first expense tracker for Dr. Kwek. 
+// Allows adding transactions, snapping photos of receipts, and exporting to CSV.
+
+import React, { useState, useEffect } from 'react';
+import { Camera, FileText, Save, Trash2, DollarSign, Plus, 
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User Goal:** Build the next logical feature for "Dad's Dental Practice Tool" for Dr. Kwek.
+    *   **Context:** Solo dentist, New Hamburg ON. Practice bought by True North (DSO). Uses personal cell. Not tech-heavy. Phone-first UX.
+    *   **K
+
+## 2026-03-22
+```tsx
+import React, { useState, useEffect } from 'react';
+import { MessageCircle, Users, Check, Send, Clipboard, X, FileText } from 'lucide-react';
+
+// Mock Data for Dr. Kwek's Recent Patients
+const PATIENTS = [
+  { id: '1', name: 'Sarah Jenkins', lastVisit: '2026-03-10', status: 'cleaning' },
+  { 
+
+## 2026-03-22
+Based on the specs, the **Expense Tracker** is the most logical next feature. It complements the communication tool by solving the internal "receipt chaos" problem.
+
+Here is the **Expense Tracker** component. It is designed for mobile use, allowing Dr. Kwek to snap a photo (simulated here), categori
+
+## 2026-03-22
+```tsx
+import React, { useState } from 'react';
+import { 
+  Receipt, 
+  Plus, 
+  Trash2, 
+  FileSpreadsheet, 
+  DollarSign, 
+  Calendar, 
+  ChevronDown, 
+  ChevronUp,
+  X
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Supplies' | 'Lab Fee' | 'Lunch' | 'Fuel' | 'Rent' | 'Other';
+
+in
+
+## 2026-03-22
+MassFollowUpSender.tsx
+
+```tsx
+import React, { useState, useMemo } from 'react';
+import { 
+  Send, 
+  MessageSquare, 
+  Users, 
+  CheckCircle, 
+  Search,
+  Filter,
+  ChevronRight,
+  Info
+} from 'lucide-react';
+
+// --- Types ---
+type PatientStatus = 'Recent' | 'Inactive' | 'Long-term';
+
+interface Pat
+
+## 2026-03-22
+ExpenseTracker.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { 
+  Save, 
+  FileText, 
+  Trash2, 
+  DollarSign, 
+  Plus, 
+  Download, 
+  AlertCircle,
+  CheckCircle
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Supplies' | 'Lab Fee' | 'Lunch' | 'Fuel' | 'Ren
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **User Persona:** Dad, solo dentist, bought out by True North (DSO), personal cell for communication, not tech-heavy, phone-first UX.
+    *   **Pr
+
+## 2026-03-22
+```tsx
+// filename: app/expense-tracker/page.tsx
+'use client'
+
+import { useState, useEffect } from 'react'
+import { DollarSign, Plus, Download, AlertCircle, CheckCircle } from 'lucide-react'
+
+// --- Types ---
+type ExpenseCategory = 'Supplies' | 'Lab Fee' | 'Lunch' | 'Fuel' | 'Rent' | 'Other'
+
+interf
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Persona:** Not tech-heavy, phone-first, bought out by True North (DSO), uses personal cell for communication.
+    *   **Problem:** Mass follow-u
+
+## 2026-03-22
+```tsx
+import React, { useState, useEffect } from 'react';
+import { 
+  DollarSign, 
+  Plus, 
+  Download, 
+  Trash2, 
+  CheckCircle, 
+  Camera, 
+  FileText,
+  AlertCircle
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Supplies' | 'Lab Fee' | 'Lunch' | 'Fuel' | 'Rent' | 'Other';
+
+int
+
+## 2026-03-22
+```tsx
+// File: components/ExpenseTracker.tsx
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  DollarSign, 
+  Trash2, 
+  FileText, 
+  Camera, 
+  Download, 
+  CheckCircle,
+  AlertCircle,
+  Filter
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Supplies' | 'La
+
+## 2026-03-22
+Here is the complete, working `ExpenseTracker.tsx`.
+
+I have focused on the "Phone-First" requirement by creating a clean, mobile-optimized interface. It uses **LocalStorage** so Dr. Kwek can actually use this on his phone immediately without needing a backend server. It includes a simulated camera c
+
+## 2026-03-22
+Here is the **Patient Outreach Dashboard** (`PatientOutreach.tsx`).
+
+This tool is designed to sit alongside the Expense Tracker. It allows Dr. Kwek to select patients from his practice list, compose a personal message, and trigger the native SMS app on his phone to send the message. It also includes
+
+## 2026-03-22
+filename: ExpenseTracker.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+
+/**
+ * Expense Tracker for Dr. Kwek
+ * 
+ * A phone-first tool to capture receipts and track expenses for his accountant.
+ * Uses LocalStorage to persist data on the doctor's personal device.
+ * No backend, no A
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg, ON).
+    *   **Context:** Practice bought by True North (DSO), personal cell phone usage, non-tech-heavy.
+    *   **Problem:** Patient follow-ups (manual trigger
+
+## 2026-03-22
+**File:** `outreach-dashboard.tsx`
+
+This Next.js component acts as a "Click-to-Text" manager for Dr. Kwek. Since it runs on his personal phone and he uses his personal number, we cannot automate the sending (requires a backend API like Twilio which costs money and looks like a business number).
+
+Ins
+
+## 2026-03-22
+Based on the problem summary, the second major pain point is **Expense Tracking**. Dr. Kwek needs a way to capture receipts, organize them, and export them for his accountant without using complex accounting software.
+
+Here is the `expense-tracker.tsx` file, designed as a mobile-first, single-page a
+
+## 2026-03-22
+```tsx
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  Download, 
+  Camera, 
+  FileText, 
+  PieChart, 
+  Calendar,
+  DollarSign,
+  Search
+} from 'lucide-react';
+
+// --- Types ---
+type Expense = {
+  id: string;
+  date: string;
+  category: string;
+  description: str
+
+## 2026-03-22
+filename: campaign-builder.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { 
+  MessageSquare, 
+  Copy, 
+  Send, 
+  Users, 
+  CheckCircle,
+  Plus,
+  FileText
+} from 'lucide-react';
+
+// --- Types ---
+type Patient = {
+  id: string;
+  name: string;
+  phone: string; // In real app
+
+## 2026-03-22
+expense-tracker.tsx
+
+```tsx
+import React, { useState, useMemo } from 'react';
+import { 
+  FileUp, 
+  Plus, 
+  Trash2, 
+  Search, 
+  DollarSign, 
+  Filter,
+  Download,
+  CheckCircle2,
+  FileText
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Supplies' | 'Lab' | 'Food' | 'Travel' | '
+
+## 2026-03-22
+```tsx
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  Search, 
+  DollarSign, 
+  Filter,
+  Download,
+  CheckCircle2,
+  FileText,
+  Camera,
+  Crown, // For Supplies
+  Briefcase, // For Travel
+  Utensils, // For Food
+  Beaker // For Lab
+} from 'lucide-react';
+
+// --
+
+## 2026-03-22
+```tsx
+import React, { useState, useEffect } from 'react';
+import { 
+  Send, 
+  Users, 
+  MessageSquare, 
+  Search, 
+  Check, 
+  X, 
+  Plus, 
+  Bell,
+  ArrowLeft,
+  Phone
+} from 'lucide-react';
+
+// --- Types ---
+type Patient = {
+  id: string;
+  name: string;
+  phone: string;
+  lastVisit: string;
+  s
+
+## 2026-03-22
+app/follow-up/page.tsx
+
+```tsx
+import React, { useState, useMemo } from 'react';
+import { 
+  Send, 
+  Users, 
+  MessageSquare, 
+  Search, 
+  Check, 
+  X, 
+  Plus, 
+  Bell,
+  ArrowLeft,
+  Phone,
+  Filter
+} from 'lucide-react';
+
+// --- Types ---
+type Patient = {
+  id: string;
+  name: string;
+  phone: 
+
+## 2026-03-22
+app/follow-up/page.tsx
+
+```tsx
+import React, { useState, useMemo, useEffect } from 'react';
+import { 
+  Send, 
+  Users, 
+  MessageSquare, 
+  Search, 
+  Check, 
+  Plus, 
+  Bell,
+  ArrowLeft,
+  Phone,
+  Filter,
+  CheckCircle
+} from 'lucide-react';
+
+// --- Types ---
+type Patient = {
+  id: string;
+  nam
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build the next logical feature for Dr. Kwek's dental practice tool.
+    *   **Context:** Dr. Kwek is a solo dentist in New Hamburg, ON. His practice was bought by True North (DSO). He uses his personal cell for patient comms. He's not
+
+## 2026-03-22
+Based on the spec summary, the next logical feature is the **Expense & Receipt Tracker**. This addresses his struggle with keeping track of transactions for his accountant and organizing receipts, fitting the "phone-first, manual trigger" requirement.
+
+Here is the complete, working code for the **Ex
+
+## 2026-03-22
+Based on the spec summary, the next logical feature is the **Expense & Receipt Tracker**. This is designed for Dr. Kwek to quickly snap photos of receipts and log expenses to hand off to his accountant at the end of the month.
+
+### Next.js App: Expense & Receipt Tracker
+
+This solution uses local sto
+
+## 2026-03-22
+```javascript
+// app/page.js
+import Link from "next/link";
+import ExpenseForm from "../components/ExpenseForm";
+import ExpenseList from "../components/ExpenseList";
+import Header from "../components/Header";
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-gray-50 tex
+
+## 2026-03-22
+Here is the updated Next.js application. I have combined the Expense Tracker (from your snippet) with the new **Mass Follow-Up Sender**.
+
+This solution uses **Next.js** and **Tailwind CSS**. It relies on `localStorage` for data persistence so it works immediately in a browser without needing a datab
+
+## 2026-03-22
+Here is the complete `app/page.js` file. It combines the Expense Tracker (from your snippet) with the new **Mass Follow-Up Sender**.
+
+This code is designed to run in a Next.js environment using Tailwind CSS. It uses `localStorage` to save his data between visits and generates "Action Links" (SMS/Wha
+
+## 2026-03-22
+app/page.js
+```javascript
+import { useState, useEffect } from 'react';
+
+export default function DadDentalTool() {
+  // --- STATE MANAGEMENT ---
+  const [activeTab, setActiveTab] = useState('expenses'); // 'expenses' | 'messages'
+  
+  // Expenses State
+  const [expenses, setExpenses] = useState([]);
+
+
+## 2026-03-22
+app/page.js
+```javascript
+import { useState, useEffect } from 'react';
+
+export default function DadDentalTool() {
+  // --- STATE MANAGEMENT ---
+  // We use localStorage to persist data between visits since there's no backend yet.
+  const [activeTab, setActiveTab] = useState('expenses');
+  
+  // Expe
+
+## 2026-03-22
+```javascript
+app/page.js
+import { useState, useEffect } from 'react';
+
+export default function DadDentalTool() {
+  // --- STATE MANAGEMENT ---
+  // We use localStorage to persist data between visits since there's no backend yet.
+  const [activeTab, setActiveTab] = useState('expenses'); // 'expenses
+
+## 2026-03-22
+filename: app/page.js
+```javascript
+'use client';
+
+import { useState, useEffect } from 'react';
+
+export default function DadDentalTool() {
+  // --- STATE MANAGEMENT ---
+  // Using localStorage to persist data between visits since there's no backend yet.
+  const [activeTab, setActiveTab] = useState('
+
+## 2026-03-22
+app/page.js
+```javascript
+'use client';
+
+import { useState, useEffect } from 'react';
+
+export default function DadDentalTool() {
+  // --- STATE MANAGEMENT ---
+  // Using localStorage to persist data between visits since there's no backend yet.
+  const [activeTab, setActiveTab] = useState('expenses')
+
+## 2026-03-22
+app/page.js
+```javascript
+'use client';
+
+import { useState, useEffect } from 'react';
+
+/**
+ * Dad's Dental Practice Tool
+ * 
+ * A single-file, mobile-first tool for Dr. Kwek.
+ * 
+ * FEATURES:
+ * 1. Expense Tracker: Capture expenses (receipts) for the accountant.
+ * 2. Follow-Up Sender: Organize pati
+
+## 2026-03-22
+app/page.js
+```javascript
+'use client';
+
+import { useState, useEffect } from 'react';
+
+/**
+ * Dr. Kwek's Dental Practice Tool
+ * 
+ * Mobile-First Web App for Solo Dentist
+ * Features:
+ * 1. Expense Tracker (Receipts & Transactions)
+ * 2. Follow-Up Sender (Mass SMS Drafts via Native App)
+ * 
+ * Note:
+
+## 2026-03-22
+```javascript
+'use client';
+
+import { useState, useEffect } from 'react';
+
+/**
+ * Expense Tracker for Dr. Kwek
+ * 
+ * - Mobile-first design
+ * - Local Storage persistence (no backend required for MVP)
+ * - Export to CSV for his accountant
+ * - Simple categories (Office, Lab, Travel, Meals, Other)
+ *
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Context:** Practice bought by True North (DSO). Dad uses personal cell for patient comms. Not tech-heavy. Phone-first UX.
+    *   **Problem:** 1. M
+
+## 2026-03-22
+```javascript
+/**
+ * filename: app/patients/page.js
+ * Framework: Next.js (Client Component)
+ * Feature: Patient Outreach Manager (MVP)
+ * Logic: LocalStorage persistence + Native SMS Intent (sms:)
+ */
+
+"use client";
+
+import { useState, useEffect } from "react";
+import { PlusCircle, MessageSquare, T
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build the next logical feature for Dr. Kwek's dental practice tool ("Dad's Dental Practice Tool").
+    *   **Context:**
+        *   Doctor: Solo dentist in New Hamburg, ON (bought by True North DSO).
+        *   Persona: Not tech-heav
+
+## 2026-03-22
+```javascript
+/* 
+  Filename: ExpenseTracker.tsx
+
+  This component serves as a dedicated expense manager for Dr. Kwek.
+  It addresses the "receipt chaos" problem by allowing him to quickly snap a photo and log the expense on the go.
+  
+  Features:
+  - Quick Add: Date, Amount, Category, Note, Receipt
+
+## 2026-03-22
+```tsx
+/*
+  Filename: ExpenseTracker.tsx
+
+  This component serves as a dedicated expense manager for Dr. Kwek.
+  It addresses the "receipt chaos" problem by allowing him to quickly snap a photo and log the expense on the go.
+  
+  Features:
+  - Quick Add: Date, Amount, Category, Note, Receipt Image
+ 
+
+## 2026-03-22
+1.  **Analyze the Request:**
+    *   **Context:** Dr. Kwek's dental practice tool.
+    *   **Persona:** Solo dentist, New Hamburg, ON. Tech-averse, phone-first. Bought out by True North (DSO).
+    *   **Problem:** Needs a way to mass-follow-up with patients (manual trigger) and track expenses (recei
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build the next logical feature for Dr. Kwek's dental practice tool.
+    *   **Persona:** Dr. Kwek (Solo dentist, New Hamburg, ON, bought out by True North DSO, not tech-heavy, phone-first).
+    *   **Context:** Previous specs mention 
+
+## 2026-03-22
+Here is the next logical feature: **The "Recall & Receipts" Dashboard**.
+
+This builds on the persona of Dr. Kwek. It combines the two main problems into a single "Home Screen" mobile web app. It's designed to look like a personal utility on his phone, not a corporate portal.
+
+### `app/page.tsx`
+This
+
+## 2026-03-22
+```tsx
+import { useState, useEffect } from 'react';
+import { MessageSquare, Receipt, Send, Trash2, Plus, CheckCircle, AlertCircle } from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+  id: string;
+  date: string;
+  vendor: string;
+  amount: number;
+  status: 'pending' | 'categorized' | 'sent
+
+## 2026-03-22
+Based on the previous "Already built" snippet that started defining the `Expense` interface, the most logical next step is to build the **Expense Tracker** module. This directly addresses the problem of tracking transactions for his accountant and fits the "phone-first" requirement perfectly.
+
+Here 
+
+## 2026-03-22
+```tsx
+/**
+ * @file ExpenseTracker.tsx
+ * @description A mobile-first expense tracker for Dr. Kwek.
+ * Features:
+ * - Add manual expenses (Date, Vendor, Amount)
+ * - "Take photo" for receipt (Mocked file input)
+ * - Categorize status (Pending -> Ready for Accountant)
+ * - Export to CSV for accountan
+
+## 2026-03-22
+### 2026-03-23
+**Feature:** Patient Recall & Reconnection Queue
+This module allows Dr. Kwek to upload a list of past patients (CSV) and quickly generate a queue of "How are you doing?" messages. Since he is not tech-savvy and likely doesn't have API access to a CRM, this tool acts as a "Drafting Sta
+
+## 2026-03-22
+```python
+"""
+File: app/recalls/page.tsx
+Framework: Next.js (using Tailwind CSS)
+Description: A mobile-first interface for Dr. Kwek to manage his "Patient Recall Queue".
+It allows him to view a list of past patients, compose a personal message, and trigger the SMS app.
+"""
+
+import React, { useState,
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+import React, { useState, ChangeEvent } from 'react';
+import { Upload, File, Plus, Trash2, Download, CheckCircle } from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+  id: string;
+  date: string;
+  merchant: string;
+  category: string;
+  amount: number;
+  receip
+
+## 2026-03-22
+```tsx
+// app/expenses/page.tsx
+import React, { useState } from 'react';
+import { 
+  Upload, 
+  File, 
+  Plus, 
+  Trash2, 
+  Download, 
+  Calendar, 
+  DollarSign, 
+  ShoppingCart, 
+  Coffee,
+  Car,
+  Briefcase,
+  ChevronRight,
+  CheckCircle,
+  AlertCircle
+} from 'lucide-react';
+
+// --- Types ---
+typ
+
+## 2026-03-22
+```tsx
+// app/follow-ups/page.tsx
+'use client';
+
+import React, { useState } from 'react';
+import { 
+  Send, 
+  Users, 
+  MessageSquare, 
+  CheckCircle, 
+  AlertCircle, 
+  ChevronRight, 
+  Phone,
+  Save,
+  X
+} from 'lucide-react';
+
+// --- Types ---
+type Patient = {
+  id: string;
+  name: string;
+  pho
+
+## 2026-03-22
+```tsx
+// app/follow-ups/page.tsx
+'use client';
+
+import React, { useState, useMemo } from 'react';
+import { 
+  Send, 
+  Users, 
+  MessageSquare, 
+  CheckCircle, 
+  AlertCircle, 
+  ChevronRight, 
+  Phone,
+  Save,
+  X,
+  Calendar,
+  Check,
+  MessageCircle
+} from 'lucide-react';
+
+// --- Types ---
+type 
+
+## 2026-03-22
+```tsx
+// app/follow-ups/page.tsx
+'use client';
+
+import React, { useState, useMemo, useEffect } from 'react';
+import { 
+  Send, 
+  Users, 
+  MessageSquare, 
+  CheckCircle, 
+  AlertCircle, 
+  ChevronRight, 
+  Phone,
+  Save,
+  X,
+  Calendar,
+  Check,
+  MessageCircle
+} from 'lucide-react';
+
+// --- Type
+
+## 2026-03-22
+app/follow-ups/page.tsx
+```tsx
+'use client';
+
+import React, { useState, useMemo, useEffect } from 'react';
+import { 
+  Send, 
+  Users, 
+  MessageSquare, 
+  CheckCircle, 
+  AlertCircle, 
+  ChevronRight, 
+  Phone,
+  Save,
+  X,
+  Calendar,
+  Check,
+  MessageCircle
+} from 'lucide-react';
+
+// --- Types -
+
+## 2026-03-22
+app/expenses/page.tsx
+```tsx
+'use client';
+
+import React, { useState, useMemo } from 'react';
+import {
+  Plus,
+  Trash2,
+  Download,
+  FileText,
+  DollarSign,
+  Calendar,
+  CheckCircle,
+  X,
+  ChevronRight,
+  Save,
+  AlertCircle
+} from 'lucide-react';
+
+// --- Types ---
+
+type Expense = {
+  id: string
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Client:** Dr. Kwek, solo dentist, bought out by True North (DSO).
+    *   **Constraints:** Phone-first UX, not tech-heavy, manual triggers, pers
+
+## 2026-03-22
+```tsx
+// app/expenses/page.tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import {
+  Download,
+  FileText,
+  DollarSign,
+  Plus,
+  Trash2,
+  Save,
+  AlertCircle,
+  CheckCircle,
+  X,
+  ChevronRight,
+} from 'lucide-react';
+
+// --- Types ---
+
+type Expense = {
+  id: string;
+  de
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON, bought out by True North DSO).
+    *   **Problem:** Patient follow-ups (mass manual trigger, replies to him personally) and Expense tracking (receipt captu
+
+## 2026-03-22
+```tsx
+'use client'
+
+import { useState } from 'react'
+import { 
+  FileText, 
+  DollarSign, 
+  Plus, 
+  Trash2, 
+  Save, 
+  AlertCircle, 
+  CheckCircle, 
+  X, 
+  ChevronRight,
+  Camera,
+  Download
+} from 'lucide-react'
+
+// --- Types ---
+
+type Expense = {
+  id: string;
+  date: string;
+  description: s
+
+## 2026-03-22
+expense-tracker.tsx
+```tsx
+'use client'
+
+import { useState, useEffect } from 'react'
+import { 
+  Plus, 
+  Trash2, 
+  DollarSign, 
+  FileText, 
+  Download,
+  Camera,
+  CheckCircle,
+  AlertCircle,
+  X
+} from 'lucide-react'
+
+// --- Types ---
+
+type Expense = {
+  id: string;
+  date: string;
+  description
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Context:** Practice bought out by True North (DSO). Uses personal cell for patient comms. Needs phone-first UX. Not tech-heavy.
+    *   **Current S
+
+## 2026-03-22
+expense-tracker.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import {
+  DollarSign,
+  FileText,
+  Download,
+  Camera,
+  CheckCircle,
+  AlertCircle,
+  X,
+  Trash2,
+  Plus
+} from 'lucide-react';
+
+// --- Types ---
+
+type Expense = {
+  id: string;
+  date: string;
+  descr
+
+## 2026-03-22
+filename: `follow-up-sender.tsx`
+
+```tsx
+'use client';
+
+import React, { useState } from 'react';
+import {
+  Send,
+  Users,
+  MessageCircle,
+  Check,
+  Filter,
+  Search,
+  Smartphone,
+  Share2,
+  MessageSquareText
+} from 'lucide-react';
+
+// --- Types ---
+
+type Patient = {
+  id: string;
+  name: string
+
+## 2026-03-22
+```tsx
+'use client';
+
+import React, { useState } from 'react';
+import {
+  Camera,
+  Plus,
+  Trash2,
+  Download,
+  FileText,
+  CheckCircle,
+  AlertCircle,
+  X,
+  ChevronDown,
+  Receipt
+} from 'lucide-react';
+
+// --- Types ---
+
+type Expense = {
+  id: string;
+  date: string;
+  vendor: string;
+  amount:
+
+## 2026-03-22
+ExpenseTracker.tsx
+```tsx
+'use client';
+
+import React, { useState, useMemo } from 'react';
+import {
+  Camera,
+  Plus,
+  Trash2,
+  Download,
+  FileText,
+  CheckCircle,
+  AlertCircle,
+  X,
+  ChevronDown,
+  Receipt,
+  Search,
+  Filter,
+} from 'lucide-react';
+
+// --- Types ---
+
+type Expense = {
+  id: st
+
+## 2026-03-22
+```tsx
+'use client';
+
+import React, { useState, useMemo, useRef } from 'react';
+import {
+  Camera,
+  Plus,
+  Trash2,
+  Download,
+  FileText,
+  CheckCircle,
+  X,
+  ChevronDown,
+  Receipt,
+  Search,
+  Filter,
+  DollarSign,
+} from 'lucide-react';
+
+// --- Types ---
+
+type Category = 'Supplies' | 'Lab' | 
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build the next logical feature for Dr. Kwek's dental practice tool.
+    *   **Context:** Solo dentist in New Hamburg, ON. Bought out by True North (DSO). Uses personal cell. Not tech-heavy. Phone-first UX.
+    *   **Current State:** A
+
+## 2026-03-22
+app/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Download, 
+  FileText, 
+  CheckCircle, 
+  X, 
+  ChevronDown, 
+  Receipt, 
+  Search, 
+  Filter, 
+  DollarSign, 
+  Plus,
+  Trash2,
+  PieChart,
+  ArrowUpRight,
+  ArrowDownRight
+} from 'lucide-react';
+
+//
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  FileText, 
+  Download, 
+  Search, 
+  Filter, 
+  DollarSign, 
+  Upload,
+  AlertCircle,
+  CheckCircle,
+  ArrowLeft,
+  ChevronUp,
+  ChevronDown,
+  Calendar
+} from 'lucide-rea
+
+## 2026-03-22
+Here is the **Mass Follow-Up Sender**. This is the most critical missing piece of his tool.
+
+It is designed as a **Mobile Web App** (no app install). It mimics a messaging interface where he can select patients, send a standard "How are you doing?" message, and view replies in a simple inbox that us
+
+## 2026-03-22
+Here is the code for the **Mass Follow-Up Sender**.
+
+### Rationale
+This is designed as a **Next.js Page Component** (Frontend) that would sit behind a secure login. It simulates the "Phone-First" UX.
+
+*   **No AI:** It does not generate messages. It allows Dr. Kwek to see a list of recent patients a
+
+## 2026-03-22
+filename: app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import { useState } from 'react';
+
+// Mock Types for Expense Tracking
+interface Expense {
+  id: string;
+  date: string;
+  description: string;
+  category: string;
+  amount: number;
+  receiptImage?: string; // In production, this would be an obje
+
+## 2026-03-22
+filename: app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Plus, Trash2, FileText, Save, Download, X } from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+  id: string;
+  date: string;
+  description: string;
+  category: string; // e.g., 'Lab',
+
+## 2026-03-22
+app/followups/page.tsx
+
+```tsx
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Plus, MessageSquare, CheckCircle, Users, Phone, Save, Download } from 'lucide-react';
+
+// --- Types ---
+interface Patient {
+  id: string;
+  name: string;
+  phone: string;
+  lastVisit: string;
+  lastVi
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Plus, FileText, Download, Trash2, DollarSign, Calendar } from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+  id: string;
+  date: string;
+  amount: number;
+  category: string;
+  description: st
+
+## 2026-03-22
+```tsx
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Plus, FileText, Download, Trash2, DollarSign, Calendar, Upload, CheckCircle, AlertCircle } from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+  id: string;
+  date: string;
+  amount: number;
+  category: string;
+  desc
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **User Profile:** Not tech-heavy, phone-first UX, personal cell phone used for communication, bought out by True North (DSO).
+    *   **Problem:**
+
+## 2026-03-22
+Here is the **Expense Tracker** module. This completes the second major problem area: expense tracking.
+
+This code is designed to be a standalone Next.js page component. It uses `localStorage` so Dr. Kwek can actually test adding items and deleting them on his phone without needing a backend server.
+
+## 2026-03-22
+The user wants me to build the next logical feature for Dr. Kwek's practice tool.
+
+**Context Analysis:**
+- **User Persona:** Solo dentist, New Hamburg ON, bought out by a DSO (True North), not tech-heavy, phone-first.
+- **Current State:** The user prompt provides the "Expense Tracker" module descrip
+
+## 2026-03-22
+```javascript
+import React, { useState, useEffect } from 'react';
+import { Trash2, Plus, FileText, Save, Download, Info } from 'lucide-react';
+
+/**
+ * Dental Practice Expense Tracker
+ * Designed for Dr. Kwek (New Hamburg, ON)
+ * 
+ * Philosophy: 
+ * - Fast data entry on mobile
+ * - Exportable text fo
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User Role:** Assistant building a tool for Dr. Kwek (Dental Practice in New Hamburg, ON).
+    *   **Context:** Dr. Kwek is a solo dentist, recently acquired by a DSO (True North), not tech-heavy, phone-first.
+    *   **Problem:** Manual patie
+
+## 2026-03-22
+```tsx
+/**
+ * Mass Follow-Up Sender
+ * 
+ * Philosophy:
+ * - Dr. Kwek wants to reach out personally, not via a robotic system.
+ * - Needs a way to trigger this manually, but efficiently.
+ * - Mobile-first design (iPhone size optimized).
+ * - "No automation" - just a tool to draft and dispatch.
+ * 
+ *
+
+## 2026-03-22
+Here is the next logical feature: **The Expense Tracker**.
+
+This tool is designed specifically for Dr. Kwek's "phone-first" requirement. It allows him to snap photos of receipts, type in the amount, categorize the expense, and generate a CSV file that he can email to his accountant.
+
+**Tech Stack:**
+
+## 2026-03-22
+```javascript
+/**
+ * FILE: expense-tracker.js
+ * 
+ * A simple, mobile-first expense tracker for Dr. Kwek.
+ * 
+ * Features:
+ * 1. Add expense with receipt photo (camera first).
+ * 2. Categorize expense (Office, Lab, Supplies, etc.).
+ * 3. Simple CSV export to email accountant.
+ * 
+ * Dependencies: Re
+
+## 2026-03-22
+The user wants the next logical feature for Dr. Kwek's dental practice tool.
+Based on the spec summary, the "Dad's Dental Practice Tool" has two main problems:
+1. Patient follow-ups (manual trigger, personal feel).
+2. Expense tracking (receipt capture, organization).
+
+The user explicitly states "Alr
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User:** Building a dental practice tool for Dr. Kwek (New Hamburg, ON).
+    *   **Context:** Solo dentist, bought out by True North (DSO), personal cell phone used for comms, not tech-heavy.
+    *   **Current State:** Two main features identi
+
+## 2026-03-22
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+
+// --- Mock Data ---
+const PATIENTS = [
+  { id: 1, name: "Sarah Jenkins", last_visit: "2023-10-15", status: "cleaning" },
+  { id: 2, name: "Mike Ros
+
+## 2026-03-22
+expense-tracker.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+
+// --- Types ---
+type Expense = {
+  id: string;
+  description: string;
+  amount: number;
+  date: string;
+  receiptPath?: string; // In a real app, this would be the image URL
+  category: string; // e.g., 
+
+## 2026-03-22
+outreach-sender.tsx
+
+```tsx
+'use client';
+
+import React, { useState } from 'react';
+
+// --- Mock Data ---
+const PATIENTS = [
+  { id: 1, name: "Sarah Jenkins", last_visit: "2023-10-15", status: "Cleaning" },
+  { id: 2, name: "Mike Ross", last_visit: "2023-11-02", status: "Checkup" },
+  { id: 3, name:
+
+## 2026-03-22
+expense-tracker.tsx
+
+```tsx
+'use client';
+
+import React, { useState } from 'react';
+import { Plus, FileText, DollarSign, Trash2, Share2, Camera } from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+  id: string;
+  description: string;
+  amount: number;
+  date: string;
+  category: 'Supplies' |
+
+## 2026-03-22
+expense-tracker.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash2, Camera, FileSpreadsheet, X } from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+  id: string;
+  description: string;
+  amount: number;
+  date: string;
+  category: 'Supplies' 
+
+## 2026-03-22
+filename: expense-tracker.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash2, Camera, FileSpreadsheet, X, Save } from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+  id: string;
+  description: string;
+  amount: number;
+  date: string;
+  categ
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg, ON). Bought out by True North (DSO).
+    *   **User Persona:** Not tech-heavy, phone-first UX, manual triggers, personal communication feel.
+    *   **Current
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build the next logical feature for Dr. Kwek's dental practice tool.
+    *   **Context:** Dr. Kwek is a solo dentist in New Hamburg, ON, acquired by True North (DSO). He is not tech-heavy, relies on his personal cell phone, wants manua
+
+## 2026-03-22
+```javascript
+/**
+ * FILE: expense-tracker.jsx
+ * 
+ * DESCRIPTION:
+ * A simple, mobile-first expense tracker for Dr. Kwek.
+ * 
+ * - Uses LocalStorage to save data (no server required for MVP).
+ * - "Camera" buttons simulate a receipt capture.
+ * - "Export" feature formats data for his accountant.
+ *
+
+## 2026-03-22
+```javascript
+/**
+ * FILE: follow-up-tool.jsx
+ * 
+ * DESCRIPTION:
+ * A mobile-first patient follow-up tool for Dr. Kwek.
+ * 
+ * - No backend required.
+ * - Uses the native SMS app on his phone to send messages.
+ * - Pre-fills the message so he just hits "Send" in his own app.
+ * - Keeps a local log 
+
+## 2026-03-22
+follow-up-tool.jsx
+
+```jsx
+/**
+ * FILE: follow-up-tool.jsx
+ * 
+ * DESCRIPTION:
+ * Mobile-first patient follow-up tool for Dr. Kwek.
+ * 
+ * - No backend required.
+ * - Uses the native SMS app on his phone to send messages.
+ * - Pre-fills the message so he just hits "Send" in his own app.
+ * - Keeps a
+
+## 2026-03-22
+filename: expense-tracker.jsx
+
+```jsx
+/**
+ * FILE: expense-tracker.jsx
+ * 
+ * DESCRIPTION:
+ * Mobile-first expense tracker for Dr. Kwek.
+ * 
+ * - No backend required.
+ * - Uses local storage to save expenses on the device.
+ * - Generates a summary to email to his accountant.
+ * - "Manual" input only
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Context:** Practice bought by True North (PE-backed DSO). Non-tech-heavy. Phone-first UX.
+    *   **Features:**
+        1.  Mass Follow-Up Sender (
+
+## 2026-03-22
+1.  **Analyze the Request:** The user wants me to build the next logical feature for Dr. Kwek's practice tool. The context is a solo dentist who is not tech-heavy, phone-first, and needs two specific things: a "Mass Follow-Up Sender" and an "Expense Tracker." The previous turn provided a high-level 
+
+## 2026-03-22
+Here is the complete code for the **Patient Follow-Up MVP**.
+
+This is designed as a **Next.js** page component. It focuses on the "Manual Trigger" aspect—Dr. Kwek selects patients, types a personal message, hits send, and sees replies in a simple inbox. It is styled for mobile (phone-first) using Ta
+
+## 2026-03-22
+expense-tracker.tsx
+
+```tsx
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
+
+// Types for our Transaction
+type Transaction = {
+  id: string;
+  date: string;
+  amount: number;
+  vendor: string;
+  category: string;
+  receiptUrl?: string;
+};
+
+const ExpenseTracker: React.FC = 
+
+## 2026-03-22
+```tsx
+'use client';
+
+import React, { useState, useEffect, useRef } from 'react';
+
+// Types for our Transaction
+type Transaction = {
+  id: string;
+  date: string;
+  amount: number;
+  vendor: string;
+  category: string;
+  receiptName?: string;
+  createdAt: string;
+};
+
+// Categories for quick selectio
+
+## 2026-03-22
+Here is the complete `ExpenseTracker.tsx` file. This is designed as a standalone component that uses LocalStorage for persistence (so it works immediately on Dr. Kwek's phone without a complex backend).
+
+It focuses on **speed of entry** (big buttons), **receipt capture**, and **exporting** data for 
+
+## 2026-03-22
+```tsx
+// File: PatientOutreach.tsx
+// Description: A simple mobile-first web app for Dr. Kwek to draft and initiate patient follow-ups.
+// It works by generating native SMS links, allowing him to hit "Send" directly from his phone's messaging app.
+
+import React, { useState, useEffect } from 'react'
+
+## 2026-03-22
+ExpenseTracker.tsx
+
+```tsx
+/**
+ * File: ExpenseTracker.tsx
+ * Description: A simple mobile-first expense tracker for Dr. Kwek.
+ * Functionality: Add transactions (amount, description, date, receipt photo), 
+ * view history, and export CSV for accountant.
+ * Persistence: Uses localStorage to work imm
+
+## 2026-03-22
+ExpenseTracker.tsx
+
+```tsx
+/**
+ * File: ExpenseTracker.tsx
+ * Description: A simple mobile-first expense tracker for Dr. Kwek.
+ * Functionality: Add transactions (amount, description, date, receipt photo), 
+ * view history, and export CSV for accountant.
+ * Persistence: Uses localStorage to work off
+
+## 2026-03-22
+PatientFollowUp.tsx
+
+```tsx
+/**
+ * File: PatientFollowUp.tsx
+ * Description: Mobile-first patient check-in tool for Dr. Kwek.
+ * Functionality: Manage patient list, compose messages, and log send history.
+ * UX: Uses native share sheet to open SMS/WhatsApp on his phone (ensures personal number).
+ * 
+
+## 2026-03-22
+PatientFollowUp.tsx
+```tsx
+/**
+ * File: PatientFollowUp.tsx
+ * Description: Mobile-first patient check-in tool for Dr. Kwek.
+ * Functionality: Manage patient list, compose messages, and log send history.
+ * UX: Uses native share sheet to open SMS/WhatsApp on his phone (ensures personal number).
+ * 
+
+
+## 2026-03-22
+ExpenseTracker.tsx
+```tsx
+/**
+ * File: ExpenseTracker.tsx
+ * Description: Mobile-first expense tracker for Dr. Kwek.
+ * Functionality: Log transactions, capture receipt previews, export summary for accountant.
+ * UX: Large touch targets, local storage persistence (no cloud login needed).
+ * Note: Us
+
+## 2026-03-22
+ExpenseTracker.tsx
+
+```tsx
+import React, { useState, useEffect, useRef } from 'react';
+import { Plus, Trash, Download, Camera, FileSpreadsheet, X, DollarSign } from 'lucide-react';
+
+// --- Types ---
+type Transaction = {
+  id: string;
+  date: string;
+  amount: number;
+  category: string;
+  merchant: 
+
+## 2026-03-22
+ExpenseTracker.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect, useRef } from 'react';
+import { Plus, Trash, Download, Camera, FileSpreadsheet, X, DollarSign, File } from 'lucide-react';
+
+// --- Types ---
+type Transaction = {
+  id: string;
+  date: string;
+  amount: number;
+  category:
+
+## 2026-03-22
+**File: `PatientFollowUpSender.tsx`**
+
+```tsx
+'use client';
+
+import React, { useState, useMemo } from 'react';
+import { Send, Plus, Trash, FileSpreadsheet, History, X, CheckCircle, MessageSquare } from 'lucide-react';
+
+// --- Types ---
+type Patient = {
+  id: string;
+  name: string;
+  phone: string;
+
+
+## 2026-03-22
+```tsx
+'use client';
+
+import React, { useState, useMemo } from 'react';
+import { 
+  Plus, 
+  Trash, 
+  DollarSign, 
+  FileSpreadsheet, 
+  Camera, 
+  Download, 
+  CheckCircle,
+  AlertCircle
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Lab' | 'Supplies' | 'Travel' | 'Meals' | 'Rent
+
+## 2026-03-22
+```tsx
+// expense-tracker.tsx
+'use client';
+
+import React, { useState, useEffect, useMemo } from 'react';
+import { 
+  Plus, 
+  Trash, 
+  DollarSign, 
+  FileSpreadsheet, 
+  Camera, 
+  Download, 
+  CheckCircle,
+  AlertCircle
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Lab' | 'Supp
+
+## 2026-03-22
+```tsx
+'use client';
+
+import React, { useState, useMemo } from 'react';
+import { 
+  Plus, 
+  Trash, 
+  DollarSign, 
+  FileSpreadsheet, 
+  Camera, 
+  Download, 
+  CheckCircle,
+  AlertCircle,
+  Calendar
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Lab' | 'Supplies' | 'Travel' | 'Me
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Client Profile:** Not tech-heavy, phone-first UX, bought out by True North (DSO), uses personal cell for patient comms, needs expense tracking.
+
+
+## 2026-03-22
+filename: `app/expenses/page.tsx`
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { 
+  Camera, 
+  Plus, 
+  FileSpreadsheet, 
+  Download, 
+  Trash2, 
+  DollarSign, 
+  Calendar,
+  ChevronRight,
+  AlertCircle
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Lab' | 'Su
+
+## 2026-03-22
+```tsx
+import React, { useState, useEffect } from 'react';
+import { 
+  Camera, 
+  Plus, 
+  FileSpreadsheet, 
+  Download, 
+  Trash2, 
+  DollarSign, 
+  Calendar,
+  ChevronRight,
+  AlertCircle,
+  X,
+  Save
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Lab' | 'Supplies' | 'Travel' | '
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON, bought by True North DSO).
+    *   **User:** Not tech-heavy, phone-first UX.
+    *   **Problem:** Mass follow-ups (manual trigger), expense tracking (recei
+
+## 2026-03-22
+filename: components/ExpenseTracker.tsx
+
+```tsx
+'use client';
+
+import React, { useState } from 'react';
+import {
+  Trash2,
+  DollarSign,
+  Calendar,
+  ChevronRight,
+  AlertCircle,
+  X,
+  Save,
+  Upload,
+  Check
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Lab' | 'Supplies' | 'Tra
+
+## 2026-03-22
+filename: components/FollowUpSender.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Send, 
+  Users, 
+  MessageSquare, 
+  CheckCircle, 
+  AlertTriangle,
+  Search,
+  Filter
+} from 'lucide-react';
+
+// --- Types ---
+interface Patient {
+  id: string;
+  name: str
+
+## 2026-03-22
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Send, 
+  Users, 
+  MessageSquare, 
+  CheckCircle, 
+  AlertTriangle,
+  Search,
+  Clipboard,
+  X,
+  ChevronRight
+} from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+## 2026-03-22
+expense-tracker.tsx
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  FileText, 
+  Download, 
+  AlertCircle,
+  Calendar,
+  DollarSign,
+  Camera,
+  Search,
+  Filter
+} from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardFo
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User Role:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg, ON).
+    *   **Context:** Practice bought by True North (DSO). Not tech-heavy. Phone-first UX.
+    *   **Problem:** Patient follow-ups (manual trigger, pers
+
+## 2026-03-22
+```tsx
+// app/page.tsx
+'use client';
+
+import { useState, useEffect } from 'react';
+import { 
+  FileText, 
+  Download, 
+  AlertCircle, 
+  Calendar, 
+  DollarSign, 
+  Camera, 
+  Search, 
+  Filter,
+  Send,
+  ClipboardCopy,
+  Home,
+  UserCheck
+} from 'lucide-react';
+
+// --- Types ---
+type Patient = {
+  
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User:** Building a dental practice tool for Dr. Kwek.
+    *   **Context:** Solo dentist, New Hamburg, ON. Practice acquired by True North (DSO). Not tech-heavy, phone-first UX.
+    *   **Goal:** Build the "next logical feature" based on the p
+
+## 2026-03-22
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  CheckCircle, 
+  MessageSquare, 
+  FileText, 
+  DollarSign, 
+  Calendar, 
+  Send,
+  Smartphone,
+  ClipboardCopy,
+  AlertCircle
+} from 'lucide-react';
+
+// --- Types ---
+type Expense = {
+  id: stri
+
+## 2026-03-22
+app/page.tsx
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  CheckCircle, 
+  MessageSquare, 
+  FileText, 
+  DollarSign, 
+  Calendar, 
+  Send,
+  Smartphone,
+  ClipboardCopy,
+  AlertCircle,
+  Home,
+  Receipt,
+  User,
+  ArrowUpRight
+} from 'luci
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  CheckCircle, 
+  MessageSquare, 
+  FileText, 
+  DollarSign, 
+  Calendar, 
+  Send,
+  Smartphone,
+  ClipboardCopy,
+  AlertCircle,
+  Home,
+  Receipt,
+  User,
+  ArrowUpRight,
+ 
+
+## 2026-03-22
+Here is the next logical feature: **The Mass Follow-Up Sender**.
+
+This page is designed for Dr. Kwek to trigger a "How are you doing?" check-in to his recent patients. It includes a message composer, a patient list to select recipients, and a status tracker.
+
+It assumes a backend API route exists to
+
+## 2026-03-22
+filename: app/patient-checkins/page.tsx
+
+```tsx
+import React, { useState } from 'react';
+import { 
+  MessageSquare, 
+  User, 
+  Calendar, 
+  Send, 
+  Smartphone, 
+  FileText, 
+  CheckCircle, 
+  AlertCircle,
+  ArrowUpRight,
+  Home
+} from 'lucide-react';
+
+// Mock Data: Simulating the database of patie
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+import React, { useState } from 'react';
+import { 
+  Receipt, 
+  Plus, 
+  Trash2, 
+  Download, 
+  Home, 
+  DollarSign, 
+  Calendar, 
+  FileText,
+  Smartphone,
+  AlertCircle
+} from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+  id: string;
+  date: string;
+  amou
+
+## 2026-03-22
+```tsx
+import React, { useState } from 'react';
+import { 
+  Send, 
+  Users, 
+  MessageSquare, 
+  CheckCircle, 
+  AlertCircle, 
+  Home, 
+  ArrowRight,
+  MessageCircle
+} from 'lucide-react';
+
+// --- Types ---
+interface Patient {
+  id: string;
+  name: string;
+  phone: string;
+  lastVisit: string;
+  sel
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  DollarSign, 
+  Plus, 
+  Trash2, 
+  Download, 
+  FileText, 
+  Save,
+  CheckCircle2,
+  Camera
+} from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+  id: string;
+  date: string;
+  amount
+
+## 2026-03-22
+app/follow-ups/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState } from 'react';
+import { 
+  MessageCircle, 
+  User, 
+  Calendar, 
+  Plus, 
+  Trash2, 
+  Send, 
+  CheckCircle,
+  Bell
+} from 'lucide-react';
+
+// --- Types ---
+interface Patient {
+  id: string;
+  name: string;
+  phone: string;
+  l
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  Camera, 
+  FileText, 
+  Download, 
+  Wallet, 
+  AlertCircle,
+  CheckCircle,
+  X,
+  DollarSign
+} from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+  id: string;
+  
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  Camera, 
+  FileText, 
+  Download, 
+  Wallet, 
+  AlertCircle,
+  CheckCircle,
+  X,
+  DollarSign,
+  ChevronDown
+} from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+ 
+
+## 2026-03-22
+filename: app/followup/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Send, 
+  Users, 
+  MessageSquare, 
+  CheckCircle, 
+  X, 
+  Trash2, 
+  ChevronLeft, 
+  MessageCircle,
+  Smartphone,
+  Info,
+  AlertCircle
+} from 'lucide-react';
+
+// --- Mock Data ---
+
+## 2026-03-22
+filename: app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  DollarSign, 
+  Download, 
+  Camera, 
+  FileText, 
+  ChevronLeft, 
+  X, 
+  Info,
+  Save,
+  AlertCircle
+} from 'lucide-react';
+
+// --- Types ---
+interface Expense 
+
+## 2026-03-22
+```tsx
+'use client';
+
+import React, { useState } from 'react';
+import {
+  MessageSquare,
+  MessageCircle,
+  CheckCircle,
+  X,
+  ChevronLeft,
+  Smartphone,
+  Info,
+  AlertCircle,
+  Send,
+  Users,
+  ArrowRight,
+  Phone
+} from 'lucide-react';
+
+// --- Types ---
+interface Campaign {
+  id: string;
+  title
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect, useMemo } from 'react';
+import {
+  Plus,
+  Trash2,
+  DollarSign,
+  Download,
+  Camera,
+  FileText,
+  ChevronLeft,
+  X,
+  Info,
+  Save,
+  AlertCircle,
+  Calendar,
+  List,
+  Home
+} from 'lucide-react';
+
+// --- Types ---
+
+
+## 2026-03-22
+app/followup/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useMemo } from 'react';
+import {
+  Send,
+  Users,
+  MessageCircle,
+  ChevronLeft,
+  Check,
+  Phone,
+  Info,
+  AlertCircle,
+  Trash2,
+  List
+} from 'lucide-react';
+
+// --- Types ---
+interface Patient {
+  id: string;
+  name: string
+
+## 2026-03-22
+Based on the `followup` page you provided, the next logical feature is **Expense Tracking**.
+
+This feature focuses on Dr. Kwek's specific pain point: capturing receipts and organizing them for his accountant without requiring complex backend AI. It prioritizes speed (mobile-first) and practicality (
+
+## 2026-03-22
+filename: `ExpenseTracker.tsx`
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import {
+  Plus,
+  Trash2,
+  FileText,
+  Camera,
+  Download,
+  Filter,
+  AlertCircle,
+  DollarSign,
+  ArrowRight,
+  History,
+} from 'lucide-react';
+
+// --- Types ---
+type Category = 'Lab' | 'Sup
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Context:** Practice bought out by True North (DSO). Uses personal cell phone. Not tech-heavy. Needs phone-first UX.
+    *   **Problem:** 1. Patient
+
+## 2026-03-22
+```tsx
+import React, { useState, useEffect } from 'react';
+import {
+  Plus,
+  Trash2,
+  FileText,
+  Camera,
+  Download,
+  Filter,
+  AlertCircle,
+  DollarSign,
+  ArrowRight,
+  History,
+  X,
+} from 'lucide-react';
+
+// --- Types ---
+type Category = 'Lab' | 'Supply' | 'Rent' | 'Software' | 'Other' | 'Ta
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import {
+  Plus,
+  Trash2,
+  FileText,
+  Camera,
+  Download,
+  DollarSign,
+  History,
+  X,
+  AlertCircle,
+  Save
+} from 'lucide-react';
+
+// --- Types ---
+type Category = 'Lab' | 'Supply' | 'Rent' | 'Software' | 'Other'
+
+## 2026-03-22
+app/followup/page.tsx
+
+```tsx
+import React, { useState } from 'react';
+import {
+  Send,
+  History,
+  CheckCircle,
+  AlertCircle,
+  MessageSquare,
+  User,
+  Filter,
+  X,
+  Save
+} from 'lucide-react';
+
+// --- Types ---
+type PatientStatus = 'Pending' | 'Sent' | 'Replied' | 'NoAnswer';
+
+type Patient = {
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useRef } from 'react';
+import {
+  Plus,
+  DollarSign,
+  Camera,
+  FileText,
+  Download,
+  AlertCircle,
+  CheckCircle,
+  Trash2,
+  X
+} from 'lucide-react';
+
+// --- Types ---
+type Category = 'Lab' | 'Supply' | 'Rent' | 'Software' |
+
+## 2026-03-22
+```tsx
+'use client';
+
+import React, { useState } from 'react';
+import {
+  Plus,
+  DollarSign,
+  Camera,
+  FileText,
+  Download,
+  Trash2,
+  AlertCircle,
+  CheckCircle,
+  X
+} from 'lucide-react';
+
+// --- Types ---
+type Category = 'Lab' | 'Supply' | 'Rent' | 'Software' | 'Staff' | 'Other';
+
+type Expen
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Client Profile:** Not tech-heavy, phone-first UX, solo practice bought out by True North (DSO).
+    *   **Core Problems:** Patient follow-ups (m
+
+## 2026-03-22
+```tsx
+import React, { useState } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  AlertCircle, 
+  CheckCircle, 
+  FileSpreadsheet, 
+  Receipt,
+  ArrowUpRight,
+  Send
+} from 'lucide-react';
+
+// --- Types ---
+type Category = 'Lab' | 'Supply' | 'Rent' | 'Software' | 'Staff' | 'Other';
+
+type Expense = {
+ 
+
+## 2026-03-22
+filename: app/expenses/page.tsx
+
+```tsx
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  Download, 
+  FileCheck, 
+  AlertCircle, 
+  CheckCircle, 
+  Receipt,
+  DollarSign,
+  Camera
+} from 'lucide-react';
+
+// --- Types ---
+type Category = 'Lab' | 'Supply' | '
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Background:** Practice bought by True North (DSO), uses personal cell for comms, not tech-heavy.
+    *   **Problem:** Patient follow-ups (manual
+
+## 2026-03-22
+Based on the previous context and the specific pain points mentioned (accountant needing receipts, manual tracking), the next logical feature to build is the **Expense & Receipt Capture** module. This directly addresses the need to organize transactions without a complex accounting setup.
+
+Here is t
+
+## 2026-03-22
+```tsx
+// Filename: app/expense-tracker/page.tsx
+
+'use client'
+
+import { useState, useEffect } from 'react'
+import { PlusCircle, Trash2, Download, FileText, DollarSign, Calendar, AlertCircle } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescrip
+
+## 2026-03-22
+```tsx
+// Filename: app/expense-tracker/page.tsx
+
+'use client'
+
+import { useState, useEffect } from 'react'
+import { PlusCircle, Trash2, Download, FileText, DollarSign, Calendar, AlertCircle, Camera, X, Save } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardCon
+
+## 2026-03-22
+app/follow-up/page.tsx
+
+```tsx
+'use client'
+
+import { useState } from 'react'
+import { MessageCircle, Users, Check, Send, History
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build the next logical feature for Dr. Kwek's dental practice tool.
+    *   **Context:** Solo dentist, New Hamburg ON, bought out by True North (DSO). Personal cell phone for communication. Not tech-heavy.
+    *   **Previous Features:
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client'
+
+import { useState, useEffect } from 'react'
+import { Upload, Plus, Download, Trash2, DollarSign, FileText } from 'lucide-react'
+
+export default function ExpensesPage() {
+  const [expenses, setExpenses] = useState<any[]>([])
+  const [formData, setFormData] 
+
+## 2026-03-22
+```tsx
+'use client'
+
+import { useState, useEffect } from 'react'
+import { MessageSquare, Send, CheckCircle, Users, History } from 'lucide-react'
+
+// Mock Data: Recent patients (Simulating a database query)
+const RECENT_PATIENTS = [
+  { id: 101, name: "Sarah Jenkins", last_visit: "2024-01-15", phone:
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Context:** Practice bought by True North (DSO). Personal cell phone used for comms. Not tech-heavy. Phone-first UX.
+    *   **Problem:** 1. Mass fo
+
+## 2026-03-22
+Based on the context and the code snippet provided, I am building the complete **Mass Follow-Up Sender** feature. This is the most critical MVP component for Dr. Kwek.
+
+This Next.js page is designed for his **personal cell phone**. It allows him to filter patients he hasn't seen in a while, select w
+
+## 2026-03-22
+```tsx
+/**
+ * File: app/follow-up/page.tsx
+ * 
+ * Context: 
+ * - Mobile-first web interface for Dr. Kwek.
+ * - Allows him to select recent patients and trigger a follow-up campaign.
+ * - Simulates an API call to "send" messages (in production, this would hit a Twilio/WhatsApp API).
+ */
+
+'use client'
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+/**
+ * File: app/expenses/page.tsx
+ * 
+ * Context: 
+ * - Mobile-first expense tracker for Dr. Kwek.
+ * - Captures receipts, categories, and totals for accountant.
+ * - Uses localStorage for persistence (no backend required for MVP).
+ * - Simple, personal, manual entry.
+
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import { useState, useEffect } from 'react';
+
+// Types
+type Transaction = {
+  id: string;
+  date: string;
+  amount: number;
+  category: string;
+  description: string;
+  receiptUrl?: string;
+};
+
+type Category = 'Meals' | 'Gas' | 'Lab' | 'Supplies' | 'Other
+
+## 2026-03-22
+app/followup/page.tsx
+
+```tsx
+'use client';
+
+import { useState, useEffect } from 'react';
+
+// --- Types ---
+type Patient = {
+  id: string;
+  name: string;
+  phone: string;
+  lastVisit: string;
+  status: 'pending' | 'sent' | 'replied';
+};
+
+type MessageLog = {
+  id: string;
+  date: string;
+  patientNa
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import { useState, useEffect } from 'react';
+
+// --- Types (from project lib) ---
+type Expense = {
+  id: string;
+  date: string;
+  amount: number;
+  category: 'Meals' | 'Gas' | 'Lab' | 'Supplies' | 'Other';
+  description
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Owner:** Solo dentist, practice bought by True North (DSO).
+    *   **UX Style:** Phone-first, non-tech-heavy, manual trigger (not automated), f
+
+## 2026-03-22
+```tsx
+// File: app/patient-outreach/page.tsx
+import React, { useState } from 'react';
+
+// --- Types ---
+type Patient = {
+  id: string;
+  name: string;
+  phone: string;
+  lastVisit: string;
+  status: 'Completed' | 'In-Progress';
+};
+
+// --- Mock Data (Simulating his patient list) ---
+const PATIENTS: 
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Context:** Practice bought by True North (DSO), personal cell phone for communication, not tech-heavy, manual trigger for follow-ups.
+    *   **Proble
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client'
+
+import React, { useState, useEffect } from 'react';
+
+// --- Types ---
+type Expense = {
+  id: string;
+  description: string;
+  amount: number;
+  date: string;
+  category: 'Supplies' | 'Lab' | 'Fuel' | 'Other';
+  receiptImage: string | null; // In production
+
+## 2026-03-22
+```tsx
+'use client'
+
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash, Share, Download, Camera, FileText } from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Supplies' | 'Lab' | 'Fuel' | 'Other';
+
+interface Expense {
+  id: string;
+  description: string;
+  amount: 
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash, Download, Camera, FileText, CheckCircle, X } from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Supplies' | 'Lab' | 'Fuel' | 'Other';
+
+interface Expense {
+  id: string;
+
+
+## 2026-03-22
+app/follow-ups/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  MessageSquare, 
+  Plus, 
+  Send, 
+  History, 
+  CheckCircle, 
+  AlertCircle,
+  Users
+} from 'lucide-react';
+
+// --- Types ---
+type Patient = {
+  id: string;
+  name: string;
+  phone: string;
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  DollarSign, 
+  FileText, 
+  Trash2, 
+  Download, 
+  Camera, 
+  CheckCircle 
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Supplies' | 'Lab' | 'Fuel' | 'Other';
+
+in
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  DollarSign, 
+  FileText, 
+  Trash2, 
+  Download, 
+  Camera, 
+  ChevronLeft,
+  AlertCircle
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Supplies' | 'Lab' | 'Fuel' 
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg, ON). Bought out by True North (DSO). Uses personal cell for patient comms. Needs phone-first UX.
+    *   **Problem:** 1. Manual mass follow-ups ("how are you 
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Dr. Kwek (solo dentist, New Hamburg, ON). Bought out by True North (DSO). Personal cell for patient comms. Phone-first UX.
+    *   **Problem:** 1. Manual mass follow-ups ("how are you doing?"). 2. Expense tracking (receipt capture 
+
+## 2026-03-22
+filename: app/expense-tracker/page.tsx
+
+```tsx
+import React, { useState, useEffect } from "react";
+
+// --- Configuration & Types ---
+type Expense = {
+  id: string;
+  date: string;
+  description: string;
+  amount: number;
+  category: "Supplies" | "Laboratory" | "Travel" | "Meals" | "Other";
+};
+
+// --
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON, bought by True North DSO).
+    *   **User Persona:** Not tech-heavy, phone-first UX, personal cell for comms, manual trigger for follow-ups (not automated)
+
+## 2026-03-22
+filename: types.ts
+```typescript
+// --- Types & Data Models ---
+
+export type Patient = {
+  id: string;
+  name: string;
+  phone: string;
+  lastVisitDate: string;
+  lastProcedure: string;
+  status: 'Active' | 'Inactive';
+};
+
+export type MessageThread = {
+  id: string;
+  patientId: string;
+  patientNam
+
+## 2026-03-22
+app/followup/page.tsx
+
+```tsx
+import React, { useState } from 'react';
+import { Patient } from '@/types';
+import { Send, CheckCircle, AlertCircle, User, MessageSquare } from 'lucide-react';
+
+/**
+ * DAD'S DENTAL PRACTICE TOOL - FOLLOW-UP SENDER
+ * 
+ * Design Philosophy:
+ * - Phone-first: Large touch 
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build the next logical feature for "Dad's Dental Practice Tool".
+    *   **Context:** Dr. Kwek, solo dentist in New Hamburg, ON, now part of True North (DSO). Phone-first UX, not tech-heavy.
+    *   **Confirmed Features:**
+        *  
+
+## 2026-03-22
+1.  **Understand the Goal:** The user wants to build the next logical feature for a personal dental practice tool for Dr. Kwek. The tool needs to be "phone-first," simple, and non-automated (manual trigger).
+
+2.  **Analyze the Context:**
+    *   **User Persona:** Dr. Kwek, solo dentist, New Hamburg 
+
+## 2026-03-22
+Here is the code for **Feature 2: The Expense Ledger**.
+
+This is built as a **Next.js** page component. It is designed to be "phone-first"—large touch targets, no clutter, and it simulates the ability to capture receipts directly from the phone camera or gallery.
+
+### `expense-ledger.tsx`
+
+```tsx
+im
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build the next logical feature for Dr. Kwek's dental practice tool ("Dad's Dental Practice Tool").
+    *   **Context:** Solo dentist, New Hamburg ON, bought out by True North (DSO), uses personal cell phone, not tech-heavy, phone-firs
+
+## 2026-03-22
+```tsx
+// expense-tracker.tsx
+// A simple, mobile-first expense ledger for Dr. Kwek to hand off to his accountant.
+// Uses LocalStorage so it persists on his phone without needing a backend server.
+
+import React, { useState, useEffect } from 'react';
+
+export default function ExpenseTracker() {
+  con
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build the next logical feature for Dr. Kwek's dental practice tool.
+    *   **Context:** Solo dentist in New Hamburg, ON. Bought out by True North (DSO). Uses personal cell phone. Not tech-heavy. Phone-first UX.
+    *   **Problem 1:**
+
+## 2026-03-22
+The user wants me to build the next logical feature for Dr. Kwek's dental practice tool based on the provided context.
+
+**Context Analysis:**
+1.  **User Persona:** Dr. Kwek, solo dentist, New Hamburg, ON. Not tech-savvy. Uses personal cell phone.
+2.  **Environment:** Bought out by True North (DSO). 
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User Persona:** Dr. Kwek, solo dentist in New Hamburg, ON. Solo practice bought out by True North (DSO). Personal cell phone for communication. Not tech-heavy.
+    *   **Goal:** Build the next logical feature for his practice tool.
+    *   **
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User:** Dr. Kwek (Dentist, New Hamburg, ON, Solo, Non-tech-savvy).
+    *   **Context:** Practice bought by True North (DSO). Uses personal cell phone. Needs manual control over patient communication (not automated AI). Needs expense tracking.
+
+## 2026-03-22
+Based on Dr. Kwek's profile (non-tech, phone-first, wants personal connection but needs efficiency), the **Mass Follow-Up Sender** is the highest-value MVP. It bridges the gap between his practice software (where the data is) and his personal cell (where he is).
+
+Here is the complete working prototy
+
+## 2026-03-22
+Based on Dr. Kwek's profile, the **Expense & Receipt Tracker** is the most logical next feature. It addresses the second major pain point: keeping track of business expenses for his accountant without relying on a complex practice management system.
+
+This Next.js page is designed for mobile browsers
+
+## 2026-03-22
+Here is the complete code for the **Expense & Receipt Tracker** MVP.
+
+### Design Rationale
+1.  **Mobile-First & "Phone-First":** This page is designed for a mobile browser. The "Add Expense" button is prominent at the bottom.
+2.  **Zero Backend Required:** It uses `localStorage` to save data directl
+
+## 2026-03-22
+Here is the **Patient Outreach Manager** (Next.js).
+
+This tool solves the "Manual Trigger" requirement perfectly. Instead of trying to force a backend SMS API (which requires Twilio credits and setup), we build a **Phone-First Messenger**.
+
+**How it works:**
+1.  Dr. Kwek adds patient names and phone
+
+## 2026-03-22
+```tsx
+import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
+
+// --- MOCK DATA & TYPES ---
+type Patient = {
+  id: string;
+  name: string;
+  phone: string;
+  status: 'pending' | 'sent';
+};
+
+// --- COMPONENTS ---
+
+const Header = () => (
+  <header className="bg-slate-900 tex
+
+## 2026-03-22
+```tsx
+import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
+
+// --- MOCK DATA & TYPES ---
+type Patient = {
+  id: string;
+  name: string;
+  phone: string;
+  lastVisit?: string;
+  status: 'pending' | 'sent';
+};
+
+type Expense = {
+  id: string;
+  vendor: string;
+  amount: nu
+
+## 2026-03-22
+filename: app/expense-tracker/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { PlusCircleIcon, TrashIcon, CheckCircleIcon } from '@heroicons/react/24/outline';
+import { formatCurrency } from '@/lib/utils';
+
+// --- TYPES ---
+type Expense = {
+  id: string;
+ 
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build the next logical feature for Dr. Kwek's dental practice tool.
+    *   **Context:** Solo dentist, New Hamburg ON, bought out by True North (DSO), phone-first UX, not tech-heavy.
+    *   **Problems:** Patient follow-ups (manual tr
+
+## 2026-03-22
+```javascript
+// File: components/ExpenseTracker.tsx
+// Note: This is a complete, standalone Next.js component designed for a mobile-first user.
+// It includes state management, receipt capture simulation, and a simple export view.
+
+'use client';
+
+import React, { useState, useEffect } from 'react';
+
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build the next logical feature for Dr. Kwek's dental practice tool.
+    *   **Context:** Solo dentist, New Hamburg ON, bought out by True North (DSO), phone-first UX, not tech-heavy.
+    *   **Problems Identified:** Patient follow-ups
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Context:** Bought out by True North (DSO), phone-first UX, not tech-heavy.
+    *   **Goal:** Build the *next logical feature*. The prompt mentions 
+
+## 2026-03-22
+Based on the spec summary, the **Expense Tracker** is the most logical next feature. It is self-contained (doesn't require access to True North's patient database), solves a high-friction problem (accountant requests), and fits the "phone-first" constraint perfectly.
+
+Here is the complete, working c
+
+## 2026-03-22
+Based on the "Expense Tracker" priority, here is the complete code for the **Dad's Dentals Expense Tracker**.
+
+This is a **Next.js** component designed specifically for a mobile screen. It uses local storage so Dr. Kwek can immediately start using it without needing a complex backend setup right now
+
+## 2026-03-22
+Here is the **Patient Follow-Up Broadcast Tool**.
+
+This tool is designed for the specific constraint that Dr. Kwek wants to send messages **from his personal cell** and needs to trigger them **manually** (not via an automated API).
+
+Instead of trying to automate SMS (which would require backend API 
+
+## 2026-03-22
+Here is the next logical feature: **Expense & Receipt Log**.
+
+This component is designed to solve the "accountant keeps asking for receipts" problem. Instead of trying to store the images (which is complex and risky for local storage), this acts as a digital ledger. Dr. Kwek takes a photo of the rec
+
+## 2026-03-22
+filename: `app/expense-log/page.tsx`
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash2, Download, Calendar, DollarSign, FileCheck } from 'lucide-react';
+
+// Simple Types
+interface Expense {
+  id: string;
+  date: string;
+  category: string;
+  amount: num
+
+## 2026-03-22
+app/follow-ups/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { Plus, Send, Trash2, MessageSquare, AlertTriangle, CheckCircle } from 'lucide-react';
+
+// Types
+interface Patient {
+  id: string;
+  name: string;
+  phone: string;
+  lastVisit: string;
+  status:
+
+## 2026-03-22
+Here is the next logical feature: **The Expense Tracker**.
+
+This tool helps Dr. Kwek capture receipts and categorize transactions quickly on his phone before sending them to his accountant. It is designed as a simple mobile-first interface where he can add an item, take a photo (simulated here), and
+
+## 2026-03-22
+```javascript
+// filename: app/expenses/page.tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  Receipt, 
+  Trash2, 
+  Download, 
+  DollarSign, 
+  Upload, 
+  Calendar 
+} from 'lucide-react';
+import { Button } from "@/components/ui/button"; // Assuming shadcn/
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  Receipt, 
+  Trash2, 
+  Download, 
+  DollarSign, 
+  Upload, 
+  Calendar,
+  CheckCircle,
+  Printer
+} from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Card
+
+## 2026-03-22
+app/communicate/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useMemo } from 'react';
+import { 
+  Plus, 
+  MessageSquare, 
+  Send, 
+  UserCheck, 
+  CheckCircle, 
+  AlertCircle, 
+  Smartphone 
+} from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Card, CardConte
+
+## 2026-03-22
+filename: app/expense/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useMemo } from 'react';
+import { 
+  Receipt, 
+  Trash2, 
+  Download, 
+  DollarSign, 
+  Upload, 
+  Calendar,
+  CheckCircle, 
+  Printer,
+  Plus,
+  X
+} from 'lucide-react';
+import { Button } from "@/components/ui/button";
+i
+
+## 2026-03-22
+app/expense/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useMemo, useEffect } from 'react';
+import { 
+  Receipt, 
+  Trash2, 
+  Download, 
+  DollarSign, 
+  Upload, 
+  Calendar,
+  CheckCircle, 
+  Plus,
+  X,
+  FileSpreadsheet,
+  PieChart
+} from 'lucide-react';
+import { Button } from "@/com
+
+## 2026-03-22
+Here is the code for the **Mass Follow-Up Sender**.
+
+This design is strictly phone-first. It allows Dr. Kwek to filter recent patients, select who he wants to touch base with, compose a quick message, and "send" (which simulates sending via WhatsApp or SMS). It logs the activity so he has a record o
+
+## 2026-03-22
+Here is the code for the **Expense Tracker**.
+
+This is a standalone Next.js component designed specifically for a mobile screen. It uses local state and browser storage to simulate a working database. It features a simple "Add" flow, a categorized list, and a monthly summary—exactly what a busy dent
+
+## 2026-03-22
+filename: patient-checkups.tsx
+
+```tsx
+import React, { useState } from 'react';
+
+// --- Mock Data ---
+// Simulating Dr. Kwek's patient database (pulls from True North system via CSV export/manual entry)
+const INITIAL_PATIENTS = [
+  { id: 1, name: 'Sarah Jenkins', lastVisit: '2023-11-10', status: 'Ac
+
+## 2026-03-22
+filename: expense-tracker.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Plus, DollarSign, FileText, Trash2, Download, Camera } from 'lucide-react';
+
+// --- Types ---
+type TransactionCategory = 'Meals' | 'Office Supplies' | 'Travel' | 'Equipment' | 'Other';
+
+interface Trans
+
+## 2026-03-22
+expense-tracker.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Plus, DollarSign, FileText, Trash2, Download, Camera, Calendar, PieChart } from 'lucide-react';
+
+// --- Types ---
+type TransactionCategory = 'Meals' | 'Office Supplies' | 'Travel' | 'Equipment' | 'Other';
+
+inter
+
+## 2026-03-22
+follow-up-sender.tsx
+
+```tsx
+import React, { useState } from 'react';
+import { MessageCircle, User, CheckCircle, Send, Smartphone, Trash2 } from 'lucide-react';
+
+// --- Mock Data ---
+// In a real app, this would come from the DSO's database (True North)
+const PATIENTS = [
+  { id: 1, name: "Sarah Jen
+
+## 2026-03-22
+expense-tracker.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { 
+  Camera, 
+  Plus, 
+  FileText, 
+  Trash2, 
+  Download, 
+  DollarSign, 
+  Filter, 
+  CheckCircle, 
+  AlertCircle 
+} from 'lucide-react';
+
+// --- Types ---
+type ExpenseCategory = 'Meals' | 'Office Supplies' | 'T
+
+## 2026-03-22
+Here is the next logical feature: **The Mass Follow-Up Sender**.
+
+This component addresses Dr. Kwek's need to manually trigger "How are you doing?" messages to recent patients. It is designed as a mobile-first web interface that feels personal and simple, avoiding complex automation while keeping tr
+
+## 2026-03-22
+```tsx
+import React, { useState, useEffect } from 'react';
+import { 
+  MessageCircle, 
+  Users, 
+  Send, 
+  Filter, 
+  CheckCircle, 
+  XCircle, 
+  UserCheck,
+  MessageSquare
+} from 'lucide-react';
+
+/**
+ * MOCK DATA - In a real app, this would come from a database/API
+ * Dr. Kwek's recent patients fo
+
+## 2026-03-22
+Based on the problem summary, the next logical feature to build is the **Expense & Receipt Tracker**.
+
+This addresses the pain point where Dr. Kwek struggles to keep track of transactions for his accountant. The design philosophy remains "phone-first" and "manual trigger"—he will take a photo of a r
+
+## 2026-03-22
+Here is the next logical feature: **Expense & Receipt Tracker**.
+
+### Rationale
+This solves Dr. Kwek's pain point of "hearing from his accountant." The design philosophy is **Low Friction**:
+1.  **One-Tap Entry:** He clicks the big button.
+2.  **Camera First:** The input opens the camera directly on
+
+## 2026-03-22
+filename: `expense-tracker-page.js`
+
+```javascript
+import React, { useState, useRef } from 'react';
+
+/**
+ * Expense Tracker - Dr. Kwek's Tool
+ * 
+ * Design Philosophy:
+ * 1. Phone-First: Full vertical layout, large touch targets.
+ * 2. Manual Trigger: Big "Add Expense" button.
+ * 3. Low Friction: Ca
+
+## 2026-03-22
+filename: `outreach-sender-page.js`
+
+```javascript
+import React, { useState, useEffect } from 'react';
+
+/**
+ * Outreach Sender - Dr. Kwek's Tool
+ * 
+ * Design Philosophy:
+ * 1. Phone-First: Vertical layout, large touch targets for thumb use.
+ * 2. Manual Trigger: He taps to send individually (no bac
+
+## 2026-03-22
+expense-tracker-page.js
+
+```javascript
+import React, { useState, useEffect } from 'react';
+
+/**
+ * Expense Tracker - Dr. Kwek's Tool
+ * 
+ * Design Philosophy:
+ * 1. Phone-First: Vertical layout, large touch targets.
+ * 2. Manual Trigger: Big "Add Expense" button.
+ * 3. Low Friction: Simple form, loc
+
+## 2026-03-22
+filename: app/expense-tracker/page.tsx
+
+```typescript
+/**
+ * Expense Tracker - Dr. Kwek's Tool
+ * 
+ * Design Philosophy:
+ * 1. Phone-First: Vertical layout, large touch targets.
+ * 2. Local Storage: Data stays on his device (privacy/compliance).
+ * 3. Manual Entry: Simple, fast logging for accountan
+
+## 2026-03-22
+app/outreach/page.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+
+/**
+ * Patient Outreach Tool - Dr. Kwek's Tool
+ * 
+ * Functionality:
+ * 1. Patient List: Manage patients who have visited recently (stored locally).
+ * 2. Message Draft: A simple pre-filled message template.
+ * 3. Act
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash2, Download, FileText, Camera } from 'lucide-react';
+
+/**
+ * Expense Tracker - Dr. Kwek's Tool
+ * 
+ * Functionality:
+ * 1. Log expenses locally (localStorage) for accountant.
+ * 2. Capture receipt p
+
+## 2026-03-22
+app/followup/page.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash2, Copy, CheckCircle, MessageCircle, Phone } from 'lucide-react';
+
+/**
+ * Patient Follow-Up Sender - Dr. Kwek's Tool
+ * 
+ * Functionality:
+ * 1. Store patient list locally (localStorage).
+ * 2. Edit
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash2, Download, Camera, FileText, AlertCircle } from 'lucide-react';
+
+/**
+ * Expense Tracker - Dr. Kwek's Tool
+ * 
+ * Functionality:
+ * 1. Log expenses locally (localStorage) for accountant.
+ * 2. Capt
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Client:** Dr. Kwek (Dad), uses personal cell phone, not tech-heavy.
+    *   **Problem:** Mass follow-ups (manual trigger, personal feel) + Expen
+
+## 2026-03-22
+Based on the summary, the **Expense Tracker** is the most immediate need to resolve the accountant friction. Since Dr. Kwek is not tech-heavy and wants to avoid a complex system, this will be a **Local-First Web App**. It runs in his browser, saves data to his phone's local storage, and allows him t
+
+## 2026-03-22
+app/page.js
+
+```javascript
+'use client'
+
+import { useState, useEffect } from 'react'
+
+// Expense Tracker MVP for Dr. Kwek
+// Runs entirely in the browser using LocalStorage
+// Mobile-first design, no backend, no login
+
+const STORAGE_KEY = 'dr_kwek_expenses_v1'
+
+export default function App() {
+  cons
+
+## 2026-03-22
+The user wants the next logical feature in the "Dad's Dental Practice Tool" for Dr. Kwek.
+
+**Context Analysis:**
+1.  **User Persona:** Dr. Kwek, solo dentist, New Hamburg ON. Not tech-heavy. Buys out by True North DSO. Uses personal cell. Needs "personal" feel, not automated.
+2.  **Current State:** 
+
+## 2026-03-22
+filename: `app/page.tsx`
+
+```tsx
+import React, { useState, useEffect } from 'react';
+
+// Dr. Kwek's Simple Expense Tracker
+// Mobile-first, runs locally, no backend.
+// Designed for the solo dentist who needs to email receipts to his accountant.
+
+const STORAGE_KEY = 'dr_kwek_expenses_v1';
+
+export de
+
+## 2026-03-22
+```tsx
+import React, { useState, useEffect } from 'react';
+import { Plus, Trash2, Download, FileText, AlertCircle } from 'lucide-react';
+
+/**
+ * Dr. Kwek's Expense Tracker
+ * 
+ * Local-only app. Data lives in browser localStorage.
+ * No backend required. 
+ * Designed for mobile use to track expenses
+
+## 2026-03-22
+```tsx
+// filename: patient_outreach_tool.tsx
+import React, { useState, useEffect } from 'react';
+import { MessageCircle, UserPlus, Trash2, Save, CheckCircle, AlertCircle } from 'lucide-react';
+
+/**
+ * Dr. Kwek's Patient Outreach Tool
+ * 
+ * PURPOSE: 
+ * Allows Dr. Kwek to load a list of patients an
+
+## 2026-03-22
+```tsx
+import React, { useState, useEffect } from 'react';
+import { 
+  MessageCircle, 
+  UserPlus, 
+  Trash2, 
+  Save, 
+  CheckCircle, 
+  Filter, 
+  Phone,
+  MessageSquare,
+  Send
+} from 'lucide-react';
+
+/**
+ * Dr. Kwek's Patient Outreach Tool
+ * 
+ * A simple, mobile-first tool to track patients nee
+
+## 2026-03-22
+filename: expense-tracker.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  List, 
+  Download, 
+  Trash2, 
+  Receipt, 
+  DollarSign,
+  Calendar,
+  Camera,
+  AlertCircle
+} from 'lucide-react';
+
+/**
+ * Expense Tracker MVP
+ * 
+ * PURPOSE: 
+ * Helps Dr. Kwek capture tr
+
+## 2026-03-22
+Based on the "Spec Summary" and the "Already Built" context of the Expense Tracker, the **Patient Outreach** feature is the core differentiator for Dr. Kwek. It solves the specific problem of "He wants to mass-send 'how are you doing?' to recent patients... not automated, fully manual trigger."
+
+Thi
+
+## 2026-03-22
+```tsx
+import React, { useState } from 'react';
+import {
+  Send,
+  Users,
+  CheckCircle,
+  MessageSquare,
+  Smartphone,
+  Check,
+  AlertCircle,
+  ArrowLeft,
+  UserCheck
+} from 'lucide-react';
+
+/**
+ * Patient Outreach Feature
+ * 
+ * PURPOSE: 
+ * Allows Dr. Kwek to manually trigger a "How are you doin
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import {
+  Camera,
+  Plus,
+  Trash2,
+  FileSpreadsheet,
+  DollarSign,
+  ChevronRight,
+  CheckCircle,
+  AlertCircle,
+  Send,
+} from 'lucide-react';
+
+/**
+ * Expense Tracker MVP
+ * 
+ * PURPOSE:
+ * Helps Dr.
+
+## 2026-03-22
+app/expenses/page.tsx
+
+```tsx
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import {
+  Camera,
+  Plus,
+  Trash2,
+  FileSpreadsheet,
+  DollarSign,
+  ArrowUp,
+  ArrowDown,
+  Download,
+  AlertCircle,
+  CheckCircle,
+  MoreVertical,
+} from 'lucide-react';
+
+/**
+ * Expense Tracker MVP
+
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build the next logical feature for Dr. Kwek's dental practice tool.
+    *   **Context:** Dr. Kwek is a solo dentist in New Hamburg, ON. His practice was bought by True North (a DSO). He uses his personal cell phone. He's not tech-heav
+
+## 2026-03-22
+filename: app/page.tsx
+```tsx
+import React, { useState, useEffect, useMemo } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  FileSpreadsheet, 
+  DollarSign, 
+  ArrowUp, 
+  ArrowDown, 
+  Download, 
+  AlertCircle, 
+  CheckCircle, 
+  MoreVertical, 
+  MessageCircle, 
+  Save 
+} from 'lucide-react';
+
+/**
+ *
+
+## 2026-03-22
+```tsx
+import React, { useState, useMemo, useEffect } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  FileSpreadsheet, 
+  DollarSign, 
+  ArrowUp, 
+  ArrowDown, 
+  Download, 
+  AlertCircle, 
+  CheckCircle, 
+  MoreVertical, 
+  MessageCircle, 
+  Save,
+  Camera,
+  Calendar
+} from 'lucide-react';
+
+/**
+ * D
+
+## 2026-03-22
+filename: `ExpenseTracker.tsx`
+
+```tsx
+import React, { useState, useMemo, useEffect } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  FileSpreadsheet, 
+  DollarSign, 
+  ArrowUp, 
+  ArrowDown, 
+  Download, 
+  AlertCircle, 
+  CheckCircle, 
+  MoreVertical, 
+  Camera, 
+  Calendar,
+  Save
+} from 'lucide-re
+
+## 2026-03-22
+filename: `PatientCheckIn.tsx`
+
+```tsx
+import React, { useState, useMemo } from 'react';
+import { 
+  MessageCircle, 
+  Send, 
+  UserCheck, 
+  Clock, 
+  ChevronRight, 
+  Check,
+  AlertCircle,
+  Save,
+  FileSpreadsheet,
+  X
+} from 'lucide-react';
+
+/**
+ * PatientCheckIn Component
+ * 
+ * Purpose: A simp
+
+## 2026-03-22
+Filename: `ExpenseTracker.tsx`
+
+```tsx
+import React, { useState, useMemo } from 'react';
+import { 
+  DollarSign, 
+  Plus, 
+  Upload, 
+  Download, 
+  FileSpreadsheet, 
+  CheckCircle, 
+  Trash2, 
+  Save, 
+  Camera, 
+  AlertCircle,
+  ChevronDown,
+  ChevronUp,
+} from 'lucide-react';
+
+/**
+ * ExpenseTrack
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Context:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Goal:** Build the "next logical feature".
+    *   **Input Data:**
+        *   User Profile: Dentist, solo practice, bought by True North (DSO), 
+
+## 2026-03-22
+filename: app/page.tsx
+
+```tsx
+'use client';
+
+import { useState, useRef, useEffect } from 'react';
+import { Camera, Trash2, Download, Save, CheckCircle, AlertCircle } from 'lucide-react';
+
+// Types
+interface Expense {
+  id: string;
+  date: string;
+  category: string;
+  amount: number;
+  merchant: st
+
+## 2026-03-22
+app/page.tsx
+```tsx
+'use client';
+
+import { useState, useRef, useEffect } from 'react';
+import { Camera, Trash2, Download, Save, Plus, DollarSign, FileText } from 'lucide-react';
+
+// Types
+interface Expense {
+  id: string;
+  date: string;
+  category: string;
+  amount: number;
+  merchant: string;
+  r
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **Goal:** Build the next logical feature for Dr. Kwek's dental practice tool.
+    *   **Context:** Solo dentist, New Hamburg ON, bought out by True North (DSO). Personal cell phone usage. Non-tech-heavy. Phone-first UX.
+    *   **Problem:** Man
+
+## 2026-03-22
+filename: app/expense-tracker/page.tsx
+
+```tsx
+import React, { useState } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  Save, 
+  DollarSign, 
+  FileText, 
+  Camera, 
+  Download, 
+  Briefcase 
+} from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+  id: string;
+  date: string;
+  category: strin
+
+## 2026-03-22
+app/expense-tracker/page.tsx
+
+```tsx
+import React, { useState, useEffect } from 'react';
+import { 
+  Plus, 
+  Trash2, 
+  Save, 
+  DollarSign, 
+  FileText, 
+  Camera, 
+  Download, 
+  Briefcase 
+} from 'lucide-react';
+
+// --- Types ---
+interface Expense {
+  id: string;
+  date: string;
+  amount: number
+
+## 2026-03-22
+Thinking Process:
+
+1.  **Analyze the Request:**
+    *   **User:** Building a dental practice tool for Dr. Kwek (solo dentist, New Hamburg ON).
+    *   **Context:** Practice bought out by True North (DSO), solo dentist, not tech-heavy, phone-first UX.
+    *   **Features:** Mass follow-up sender (manu
+
+## 2026-03-22
+Based on the context provided, the next logical feature is the **Mass Follow-Up Sender**.
+
+This needs to be a mobile-first web interface that allows Dr. Kwek to select recent patients, type a personal message, and "send" it. Since we don't have access to a real SMS gateway (Twilio/Vonage) in this de
+
+## 2026-03-22
+```javascript
+// Filename: /app/page.js
+// Framework: Next.js 14+ (Pages Router or App Router compatible)
+// Dependencies: React, Tailwind CSS (standard in Next.js)
+
+'use client';
+
+import React, { useState } from 'react';
+
+// --- MOCK DATA ---
+// In a real scenario, this would fetch from Dr. Kwek's 
+
+## 2026-03-22
+```javascript
+// Filename: /app/page.js
+// Framework: Next.js 14+ (Pages Router or App Router compatible)
+// Dependencies: React, Tailwind CSS, lucide-react
+
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { Camera, Plus, Trash, FileText, Calculator, Save, List } from 'luci
+
+## 2026-03-22
+filename: /app/page.js
+
+```javascript
+'use client';
+
+import React, { useState } from 'react';
+import { Camera, Plus, Trash, Save, FileText, DollarSign, ArrowUp } from 'lucide-react';
+
+// --- MOCK DATA ---
+const INITIAL_EXPENSES = [
+  { id: 1, date: '2024-03-20', merchant: 'Dental Supply Co.', catego
+
+## 2026-03-22
+app/followup/page.js
+
+```javascript
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { 
+  Send, 
+  Phone, 
+  Inbox, 
+  User, 
+  CheckCircle, 
+  MessageSquare, 
+  X, 
+  ArrowLeft, 
+  Bell 
+} from 'lucide-react';
+import Link from 'next/link';
+
+// --- MOCK DATA ---
+const PATIEN
+
+## 2026-03-22
+app/expenses/page.js
+
+```javascript
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { 
+  Plus, 
+  Trash2, 
+  Download, 
+  Receipt, 
+  Wallet, 
+  AlertCircle, 
+  DollarSign,
+  Save,
+  X
+} from 'lucide-react';
+
+// --- MOCK DATA & UTILS ---
+const 
