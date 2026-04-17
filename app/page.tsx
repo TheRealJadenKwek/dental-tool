@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { MessageSquare, Users, DollarSign, ChevronRight } from 'lucide-react'
+import { MessageSquare, Users, DollarSign, ChevronRight, Github } from 'lucide-react'
 
 const features = [
   {
@@ -35,11 +35,26 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50">
       <header className="bg-white border-b border-slate-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Dental Practice Toolkit</h1>
-          <p className="text-sm sm:text-base text-slate-500 mt-1">
-            A lightweight, mobile-first tool for patient records, expense tracking, and follow-up reminders.
-          </p>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex items-start justify-between gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 text-xs font-medium text-slate-500 uppercase tracking-wide mb-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              Live demo
+            </div>
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Dental Practice Toolkit</h1>
+            <p className="text-sm sm:text-base text-slate-500 mt-1 max-w-2xl">
+              A lightweight, mobile-first tool for patient records, expense tracking, and follow-up reminders. Built with Next.js, TypeScript, and Tailwind.
+            </p>
+          </div>
+          <a
+            href="https://github.com/TheRealJadenKwek/dental-tool"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 hidden sm:inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 border border-slate-200 rounded-lg px-3 py-1.5 hover:bg-slate-50 transition-colors"
+          >
+            <Github className="w-4 h-4" />
+            Source
+          </a>
         </div>
       </header>
 
@@ -77,6 +92,23 @@ export default function Home() {
           </ul>
         </section>
       </main>
+
+      <footer className="border-t border-slate-200 bg-white mt-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <p className="text-xs text-slate-500">
+            Demo project · data stays in your browser · no account required.
+          </p>
+          <a
+            href="https://github.com/TheRealJadenKwek/dental-tool"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-xs text-slate-500 hover:text-slate-900"
+          >
+            <Github className="w-3.5 h-3.5" />
+            View source on GitHub
+          </a>
+        </div>
+      </footer>
     </div>
   )
 }
