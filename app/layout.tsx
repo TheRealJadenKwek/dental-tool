@@ -2,14 +2,13 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: "Dr. Kwek's Practice Tool",
-  description: 'Mass follow-up & expense tracking for Dr. Kwek',
+  title: 'Dental Practice Toolkit',
+  description: 'Lightweight patient, expense, and follow-up tracking for small dental practices.',
 }
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
