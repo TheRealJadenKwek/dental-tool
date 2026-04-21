@@ -1,45 +1,54 @@
 # Dental Practice Toolkit
 
-A lightweight, mobile-first web app for small dental practices. Tracks patients, expenses, and follow-up reminders. Built with Next.js, TypeScript, and Tailwind.
+A small Next.js demo app: a mobile-first admin tool for a fictional dental practice. Built to showcase a full-stack stack in a single focused project — patient records, expense tracking, and follow-up reminders, plus optional Supabase auth and Stripe payments.
+
+> **Not a real product.** This is a portfolio/demo project, not a replacement for real dental practice management software (Dentrix, Open Dental, etc.).
+
+## What it demonstrates
+
+- **Next.js 16 App Router** with a mix of static pages and dynamic route handlers
+- **TypeScript** end-to-end with strict types
+- **Tailwind CSS** responsive layout (mobile-first, scales to desktop)
+- **Client state + persistence** via `localStorage` (no backend required for core features)
+- **Supabase** server-client integration for auth (`/api/auth`)
+- **Stripe** PaymentIntents for payments (`/api/stripe`)
+- **CSV export** with client-side Blob generation
+- Clean, lazy-initialized API routes so the app builds on Vercel with zero env vars
 
 ## Features
 
-| Feature | What it does | Storage |
+| Page | What it does | Data |
 | --- | --- | --- |
-| **Patient List** (`/patients`) | Add, search, and delete patient records (name, phone, email, last visit) | Browser `localStorage` |
-| **Expense Tracker** (`/expenses`) | Log expenses by category, see per-category totals, export CSV | Browser `localStorage` |
-| **Follow-Up Queue** (`/follow-up`) | Flag overdue/due-soon/contacted patients, bulk-mark contacted, copy a pre-written SMS to clipboard | Demo data (swap for real source) |
-| **Auth API** (`/api/auth`) | Supabase signup / signin / signout | Requires Supabase keys |
-| **Payments API** (`/api/stripe`) | Create Stripe PaymentIntents | Requires Stripe key |
+| `/` | Feature-forward dashboard / landing page | — |
+| `/patients` | Add / search / delete patient records (name, phone, email, last visit) | Browser `localStorage` |
+| `/expenses` | Log expenses by category, see per-category totals, export CSV | Browser `localStorage` |
+| `/follow-up` | Flag overdue / due-soon / contacted patients, bulk-update status, copy an SMS reminder to clipboard | Demo data (sample patients) |
+| `/api/auth` | Supabase signup / signin / signout | Needs Supabase keys |
+| `/api/stripe` | Create Stripe PaymentIntents | Needs Stripe key |
 
-The three front-end pages work standalone in any browser — no signup or backend required. Supabase and Stripe are optional for when you outgrow single-device use.
+The three front-end pages work standalone. Supabase and Stripe routes return a 503 if their env vars aren't set, so the app still deploys cleanly.
 
 ## Run locally
 
 ```bash
 git clone https://github.com/TheRealJadenKwek/dental-tool.git
 cd dental-tool
-cp .env.local.example .env.local   # fill in keys only if using the API routes
+cp .env.local.example .env.local   # optional: only needed for API routes
 npm install
 npm run dev
 ```
 
-Then open http://localhost:3000.
+Open http://localhost:3000.
 
 ## Deploy to Vercel
 
-1. Push this repo to your GitHub account.
-2. Go to [vercel.com/new](https://vercel.com/new), import the repo.
-3. (Optional) Add the environment variables from `.env.local.example` if you want the Supabase or Stripe routes to work.
-4. Click **Deploy**.
-
-Or use the one-click button:
-
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/TheRealJadenKwek/dental-tool)
+
+Or manually: push to your fork → import in [vercel.com/new](https://vercel.com/new) → deploy. No env vars needed for a first deploy.
 
 ## Environment variables
 
-Only required if you use the API routes. The front-end pages work without any of these.
+Optional. Only set these if you want to exercise the backend routes.
 
 | Variable | Used by |
 | --- | --- |
@@ -47,6 +56,6 @@ Only required if you use the API routes. The front-end pages work without any of
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | `/api/auth` |
 | `STRIPE_SECRET_KEY` | `/api/stripe` |
 
-## Tech stack
+## Stack
 
-Next.js · TypeScript · Tailwind CSS · Supabase · Stripe · lucide-react
+Next.js 16 · React 19 · TypeScript · Tailwind CSS 4 · Supabase · Stripe · lucide-react
